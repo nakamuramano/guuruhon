@@ -2,9 +2,22 @@ Rails.application.routes.draw do
 
   devise_for :users,skip: [:passwords], controllers: {
   registrations: "public/registrations",
-  sessions: 'public/sessions',
+  sessions: 'public/sessions'
   }
-  post '/guests/guest_sign_in', to: 'guests#new_guest'
+
+  namespace :public do
+   post '/guests/guest_sign_in', to: 'guests#new_guest'
+   root 'homes#top'
+   resources :users
+   resources :articles
+   resources :article_tags
+   resources :tags
+   resources :comments
+   resources :bookmarks
+
+  end
+
+
 
 
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
