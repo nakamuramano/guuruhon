@@ -46,13 +46,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <%= link_to "マイページ", , class: "btn btn-outline-secondary" %>
+                <%= link_to "マイページ", user_path(current_user.id), class: "btn btn-outline-secondary" %>
               </li>
               <li class="nav-item">
-
+                <%= link_to "おすすめ", new_article_path, class: "btn btn-outline-secondary" %>
               </li>
               <li class="nav-item">
-
+                <%= link_to "みんなのおすすめ", articles_path, class: "btn btn-outline-secondary" %>
               </li>
               <li class="nav-item">
                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary" %>
