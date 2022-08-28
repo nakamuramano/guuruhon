@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   namespace :public do
    post '/guests/guest_sign_in', to: 'guests#new_guest'
    root 'homes#top'
-   resources :users
+   get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+   patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+   
+   resources :users, only: [:show, :edit, :update]
    resources :articles
    resources :article_tags
    resources :tags
