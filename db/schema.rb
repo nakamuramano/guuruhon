@@ -25,10 +25,13 @@ ActiveRecord::Schema.define(version: 2022_08_23_120147) do
   end
 
   create_table "article_tags", force: :cascade do |t|
-    t.integer "article_id", null: false
-    t.integer "tag_id", null: false
+    t.integer "article_id"
+    t.integer "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id", "tag_id"], name: "index_article_tags_on_article_id_and_tag_id", unique: true
+    t.index ["article_id"], name: "index_article_tags_on_article_id"
+    t.index ["tag_id"], name: "index_article_tags_on_tag_id"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -75,4 +78,6 @@ ActiveRecord::Schema.define(version: 2022_08_23_120147) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "article_tags", "articles"
+  add_foreign_key "article_tags", "tags"
 end

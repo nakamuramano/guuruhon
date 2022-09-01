@@ -1,0 +1,13 @@
+<main>
+  <div class="container">
+    <div class="row">
+    <h1>Posts#edit</h1>
+    <p>Find me in app/views/articles/edit.html.erb</p>
+
+    <h2>article --></h2>
+    <%= form_with model: @article do |article| %>
+      <%= render 'form', article: article %>
+    <% end %>
+    </div>
+  </div>
+</main>

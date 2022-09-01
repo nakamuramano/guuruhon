@@ -1,0 +1,28 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <h1>articles#show</h1>
+      <p>Find me in app/views/articles/show.html.erb</p>
+
+      <h2>Actions --></h2>
+      <%= link_to 'Top', root_path %>
+      <%= link_to 'Edit', edit_article_path(@article) %>
+      <%= link_to 'Delete', article_path(@article), method: :delete, data: {confirm: '削除しますか？'} %>
+
+      <h3>Title --></h3>
+      <%= @article.title %>
+
+      <h3>Content --></h3>
+      <p><%= simple_format(@article.content) %></p></br>
+
+      <h3>Tags --></h3>
+      <ul>
+        <% @article.tags.each do |tag| %>
+          <li>
+            <%= link_to tag.tag_name, tag_path(tag) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</main>
