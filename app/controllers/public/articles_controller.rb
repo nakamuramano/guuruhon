@@ -7,7 +7,7 @@ class Public::ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    @article_comment = ArticleComment.new
+    #@article_comment = ArticleComment.new
     @article_tags = @article.tags
   end
 
@@ -27,10 +27,10 @@ class Public::ArticlesController < ApplicationController
     end
   end
 
-  def search
+  def search_tag
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.articles.all
+    @articles = @tag.articles.all
   end
 
   def edit
@@ -42,8 +42,12 @@ class Public::ArticlesController < ApplicationController
       @article = Article.find(params[:id])
       tag_list = params[:post][:tag_name].split(",")
     if @article.update(article_params)
-      @article.save_tags(tag_list)
-      redirect_to article_path(@article.id), notice:'投稿完了しました:)'
+       @old_relations = ArticleTag.where(article_id: @article.id)
+       @old_relations.each do |relation|
+        relation.delete
+       end
+        @article.save_tag(tag_list)
+        redirect_to article_path(@article.id), notice: '更新完了しました:)'
     else
       render :edit
     end

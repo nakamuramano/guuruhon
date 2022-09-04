@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <% @article_tags.each do |tag| %>
-        <%=tag.tag_name%><%="(#{tag.articles.count})" %>
+        <%= link_to tag.tag_name,search_tag_path(tag_id: tag.id) %><%="(#{tag.articles.count})" %>
       <% end %>
 
     </div>

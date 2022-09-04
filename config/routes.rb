@@ -10,7 +10,7 @@ Rails.application.routes.draw do
    root 'homes#top'
    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
-   get "search_article" => "articles#search_article"
+   get "search_tag" => "articles#search_tag"
 
    resources :users, only: [:show, :edit, :update]
    resources :articles

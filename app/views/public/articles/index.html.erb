@@ -1,8 +1,32 @@
 <main>
   <div class="container">
     <div clsss="row">
+      <table class="table table-borderless">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <% @articles.each do |article|%>
+
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td><%= article.title %></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+          </tbody>
+        <% end %>
+      </table>
+
+
       <% @tag_list.each do |list|%>
-        <%=list.tag_name %>
+        <%= link_to list.tag_name,search_tag_path(tag_id: list.id) %>
         <%="(#{list.articles.count})" %>
       <% end %>
 
