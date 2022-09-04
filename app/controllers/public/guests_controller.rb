@@ -6,7 +6,7 @@ class Public::GuestsController < ApplicationController
      user.name = 'ゲストさん'
    end
    sign_in user
-   redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+   redirect_to root_path, alert: 'ゲストユーザーとしてログインしました。'
  end
 
 end
