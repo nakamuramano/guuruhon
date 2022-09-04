@@ -1,0 +1,14 @@
+<main>
+  <div class="container">
+    <div class="row">
+       <h2>検索結果 "<%= @content %>"</h2>
+          <ul>
+            <% @articles.each do |article| %>
+              <li>
+                <%= article.title %>
+              </li>
+            <% end %>
+          </ul>
+    </div>
+  </div>
+</main>

@@ -33,6 +33,15 @@ class Public::ArticlesController < ApplicationController
     @articles = @tag.articles.all
   end
 
+  def search
+    if params[:content].present?
+      @articles = Article.where('content LIKE ?', "%#{params[:content]}%")
+      @content = params[:content]
+    else
+      @articles = Article.all
+    end
+  end
+
   def edit
     @article = Article.find(params[:id])
     @tag_list = @article.tags.pluck(:tag_name).join(",")
