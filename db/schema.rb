@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2022_08_23_120147) do
     t.integer "user_id", null: false
     t.string "title", null: false
     t.string "content", null: false
-    t.string "tag", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

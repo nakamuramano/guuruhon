@@ -1,17 +1,23 @@
 <main>
   <div class="container">
     <div class="row">
-      <h1>articles#new</h1>
-　　　<p>Find me in app/views/articles/new.html.erb</p>
+      <h3>新規投稿</h3>
+      <%= form_with model: @article, url: '/articles', method: :post do |f| %>
 
-　　　<h2>Actions --></h2>
-　　　<%= link_to 'Top', root_path %>
+        <label>タイトル</label>
+        <p><%= f.text_field :title %></p>
 
-　　　<h2>article --></h2>
-　　　<%= form_with model: @article do |article| %>
- 　　　　　　 <%= render 'fom', post: post %>
+        <label>本文</label>
+        <p><%= f.text_area :content %></p>
 
-　　　<% end %>
+        <label>タグ</label>
+        <p><%= f.text_field :tag_names, placeholder:",で区切ってください" %></p>
+
+
+
+        <%= f.submit '投稿' %>
+
+      <% end %>
 
     </div>
   </div>

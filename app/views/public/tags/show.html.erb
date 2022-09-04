@@ -10,17 +10,17 @@
 
       <h2>Tag --></h2>
 
-<%# タグ名 %>
-      <h3><%= @tag.name %></h3>
+      <h3><%= @tag.tag_name %></h3>
 
-<%# タグに関連付く記事一覧 %>
       <ul>
-        <% @tag.posts.each do |post| %>
+        <% @tag.articles.each do |article| %>
           <li>
-            <%= link_to post.title, post_path(post) %>
+            <%= link_to article.title, article_path(article) %>
           </li>
         <% end %>
       </ul>
+
+
     </div>
   </div>
 </main>

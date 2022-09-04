@@ -1,5 +1,5 @@
 class Public::TagsController < ApplicationController
-  
+
   def index
     @tags = Tag.all
   end
@@ -12,5 +12,5 @@ class Public::TagsController < ApplicationController
     Tag.find(params[:id]).destroy()
     redirect_to tags_path
   end
-  
+
 end
