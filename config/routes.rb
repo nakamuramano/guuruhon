@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   scope module: :public do
    post '/guests/guest_sign_in', to: 'guests#new_guest'
    root 'homes#top'
-   get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
-   patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+   #get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+   #patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
    get "search_tag" => "articles#search_tag"
 
 
@@ -18,10 +18,10 @@ Rails.application.routes.draw do
       collection do
         get 'search'
       end
+      resources :comments, only: [:create, :destroy]
     end
    resources :article_tags
    resources :tags
-   resources :comments
    resources :bookmarks
 
   end

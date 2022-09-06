@@ -7,7 +7,7 @@ class Public::ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    #@article_comment = ArticleComment.new
+    @comment = Comment.new
     @article_tags = @article.tags
   end
 
@@ -65,7 +65,7 @@ class Public::ArticlesController < ApplicationController
 
   def destroy
     Article.find(params[:id]).destroy()
-    redirect_to root_path
+    redirect_to root_path(params[:article_id])
   end
 
   private
