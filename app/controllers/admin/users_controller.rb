@@ -6,9 +6,11 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @articles = Articles.all
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
@@ -17,5 +19,6 @@ class Admin::UsersController < ApplicationController
   private
 
   def user_params
+    params.require(:user).permit(:name, :email, :is_active)
   end
 end
