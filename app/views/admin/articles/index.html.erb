@@ -1,0 +1,32 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <h4>Articles</h4>
+      <table class="table table-borderless">
+        <% @articles.each do |article|%>
+          <tbody>
+            <tr>
+              <th scope="row">
+                <%= link_to admin_user_path(article.user.id) do %>
+                   <%= image_tag article.user.get_profile_image(80,80) %>
+                   <p><%= article.user.name %></p>
+                <% end %>
+              </th>
+              <td>
+                 <%= link_to admin_article_path(article.id) do %>
+                    <%= article.title %>
+                  <% end %>
+              </td>
+              <td><%= article.content %></td>
+              <td>
+                <%= link_to "#{article.comments.count} コメント"%>
+              </td>
+            </tr>
+            <tr>
+          </tbody>
+        <% end %>
+      </table>
+
+    </div>
+  </div>
+</main>
