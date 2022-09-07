@@ -6,7 +6,7 @@ class Admin::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @articles = Articles.all
+    @articles = @user.articles
   end
 
   def edit
@@ -14,6 +14,10 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    redirect_to admin_user_path(@user.id)
+
   end
 
   private

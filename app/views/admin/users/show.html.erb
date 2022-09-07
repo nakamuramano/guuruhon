@@ -27,10 +27,37 @@
           </tr>
           <tr>
             <td></td>
-            <td><% link_to "Edit", edit_admin_user_path(@user.id) %></td>
+            <td><%= link_to "Edit", edit_admin_user_path %></td>
           </tr>
         </tbody>
       </table>
+
+      <h4>article</h4>
+        <table class='table table-hover table-inverse'>
+          <thead>
+            <tr>
+             <th></th>
+             <th>Title</th>
+             <th>Opinion</th>
+             <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @articles.each do |article| %>
+              <tr>
+                <td>
+                </td>
+                <td>
+                  <%= link_to article_path(article.id) do %>
+                    <%= article.title %>
+                  <% end %>
+                </td>
+                <td><%= article.content %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
     </div>
   </div>
 </main>

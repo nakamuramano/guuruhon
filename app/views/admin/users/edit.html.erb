@@ -1,0 +1,41 @@
+<main>
+  <div class="container">
+    <div class="row">
+
+      <h4>User info </h4>
+
+      <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
+        <%= f.file_field :profile_image, accept: "image/*" %>
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td width="240">User ID</td>
+              <td><%= @user.id %></td>
+            </tr>
+            <tr>
+              <td>Name</td>
+              <td><%= f.text_field :name %></td>
+            </tr>
+            <tr>
+              <td>Email</td>
+              <td><%= f.text_field :email%></td>
+            </tr>
+            <tr>
+              <td>status</td>
+              <% if @user.is_active? %>
+                <td class="text-success">valid</td>
+              <% else %>
+                <td class="text-secondary">unsubscribe</td>
+              <% end %>
+            </tr>
+            <tr>
+              <td></td>
+              <td><%= f.submit "save" %></td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+
+    </div>
+  </div>
+</main>
