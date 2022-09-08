@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   has_one_attached :profile_image
 
@@ -19,6 +20,23 @@ class User < ApplicationRecord
 
   def active_for_authentication?
     super && (is_active == true)
+  end
+
+
+  def own?(object)
+    id == object.user_id
+  end
+
+  def bookmark(article)
+    bookmarks_article << article
+  end
+
+  def unbookmark(article)
+    bookmarks_articles.delete(article)
+  end
+
+  def bookmark?(article)
+    bookmarks_articles.include?(article)
   end
 
 end

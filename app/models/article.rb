@@ -4,10 +4,10 @@ class Article < ApplicationRecord
 
   validates :title, presence: true
   validates :content, presence: true
-  
-  has_many :comments, dependent: :destroy
 
-  belongs_to :user
+  has_many :comments, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
+
 
   def save_tag(sent_tags)
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
@@ -22,7 +22,11 @@ class Article < ApplicationRecord
       new_article_tag = Tag.find_or_create_by(tag_name: new)
       self.tags << new_article_tag
    end
-end
+  end
+
+  def bookmarked_by?(user)
+    bookmarks.where(user_id: user).exists?
+  end
 
 
 

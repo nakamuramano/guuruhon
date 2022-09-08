@@ -13,12 +13,15 @@ Rails.application.routes.draw do
    get "search_tag" => "articles#search_tag"
 
 
-   resources :users, only: [:show, :edit, :update]
+   resources :users, only: [:show, :edit, :update] do
+       get :bookmarks, on: :collection
+     end
    resources :articles do
       collection do
         get 'search'
       end
       resources :comments, only: [:create, :destroy]
+      resource :bookmarks, only: [:create, :destroy]
     end
    resources :article_tags
    resources :tags
