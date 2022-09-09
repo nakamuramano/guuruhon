@@ -22,21 +22,4 @@ class User < ApplicationRecord
     super && (is_active == true)
   end
 
-
-  def own?(object)
-    id == object.user_id
-  end
-
-  def bookmark(article)
-    bookmarks_article << article
-  end
-
-  def unbookmark(article)
-    bookmarks_articles.delete(article)
-  end
-
-  def bookmark?(article)
-    bookmarks_articles.include?(article)
-  end
-
 end

@@ -43,12 +43,42 @@
       <td colspan="2">Larry the Bird</td>
       <td>@twitter</td>
     </tr>
+    <tr>
+      <th><%= link_to "編集する", edit_user_path(@user.id) %></th>
+      <th><%= link_to "退会する", unsubscribe_path(@user.id) %></th>
+    </tr>
   </tbody>
 </table>
 
 
-      <%= link_to "編集する", edit_user_path(@user.id) %>
-      <%= link_to "退会する", unsubscribe_path(@user.id) %>
+        <table>
+
+        <h5>ブックマーク一覧</h5>
+        <thead>
+          <tr>
+            <th>投稿者名</th>
+            <th>タイトル</th>
+            <th>本文</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @bookmarks.each do |bookmark| %>
+            <tr>
+              <td><%= bookmark.article.user.name %></td>
+              <td>
+                <%= link_to article_path(bookmark.article) do %>
+                  <%= bookmark.article.title %>
+                <% end %>
+              </td>
+              <td><%= bookmark.article.content %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+
+
+
     </div>
   </div>
 </main>

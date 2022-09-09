@@ -4,8 +4,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @articles = @user.articles
 
-    bookmarks = Bookmark.where(user_id: current_user.id).pluck(:article_id)
-    @bookmark_list = Article.find(bookmarks)
+    @bookmarks = Bookmark.where(user_id: current_user.id)
   end
 
   def edit

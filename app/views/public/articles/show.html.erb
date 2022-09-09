@@ -1,6 +1,34 @@
 <main>
   <div class="container">
     <div class="row">
+        <table class='table table-hover table-inverse'>
+          <tr>
+            <td>
+              <%= link_to user_path(@user.id) do %>
+                <%= image_tag @user.get_profile_image(100,100) %></br>
+                <%= @user.name %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to admin_article_path(@article.id) do %>
+                <%= @article.title %>
+              <% end %>
+            </td>
+            <td><%= @article.content %></td>
+            <td>
+              <%= link_to 'Edit', edit_admin_article_path(@article.id), class: 'btn btn-success btn-sm' %>
+            </td>
+            <td>
+              <%= link_to 'Destroy', admin_article_path(@article), method: :delete, class:'btn btn-danger btn-sm', "data-confirm" => "本当に削除しますか？" %>
+            </td>
+            <% if @article.bookmarked_by?(current_user) %>
+              <td><%= link_to "いいね♡を外す", article_bookmarks_path(@article), method: :delete %></td>
+             <% else %>
+              <td><%= link_to "いいね♡", article_bookmarks_path(@article), method: :post %></td>
+            <% end %>
+          </tr>
+        </table>
+
       <% @article_tags.each do |tag| %>
         <%= link_to tag.tag_name,search_tag_path(tag_id: tag.id) %><%="(#{tag.articles.count})" %>
       <% end %>

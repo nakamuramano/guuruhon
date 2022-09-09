@@ -1,19 +1,28 @@
 class Public::BookmarksController < ApplicationController
-  
+
+  before_action :authenticate_user!
+
   def create
     @article = Article.find(params[:article_id])
-    current_user.bookmark(@article)
-  end
-  
-  def destroy
-    @article = current_user.bookmarks.find(params[:article_id]).article
-    current_user.unbookmark(@article)
+    bookmark = @article.bookmarks.new(user_id: current_user.id)
+    if bookmark.save
+      redirect_to request.referer
+    else
+      redirect_to request.referer
+    end
+
   end
 
-  private
-  
-  def set_article
+  def destroy
     @article = Article.find(params[:article_id])
+    bookmark = @article.bookmarks.find_by(user_id: current_user.id)
+    if bookmark.present?
+        bookmark.destroy
+        redirect_to request.referer
+    else
+        redirect_to request.referer
+    end
+
   end
-  
+
 end

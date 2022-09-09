@@ -1,13 +1,14 @@
 class Article < ApplicationRecord
+
+  belongs_to :user
+
   has_many :article_tags,dependent: :destroy
   has_many :tags,through: :article_tags
-
-  validates :title, presence: true
-  validates :content, presence: true
-
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
+  validates :title, presence: true
+  validates :content, presence: true
 
   def save_tag(sent_tags)
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
@@ -27,8 +28,6 @@ class Article < ApplicationRecord
   def bookmarked_by?(user)
     bookmarks.where(user_id: user).exists?
   end
-
-
 
 
 
