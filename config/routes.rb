@@ -21,11 +21,10 @@ Rails.application.routes.draw do
 
       end
       resources :comments, only: [:create, :destroy]
-        resource :bookmarks, only: [:create, :destroy]
     end
    resources :article_tags
    resources :tags
-   resources :bookmarks, only: [:create, :destroy]
+   resources :bookmarks, only: [:index]
 
   end
 

@@ -1,0 +1,31 @@
+<main>
+  <div class="container">
+    <div class="row">
+
+        <h5>ブックマーク一覧</h5>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">user</th>
+              <th scope="col">title</th>
+              <th scope="col">content</th>
+            </tr>
+          </thead>
+          <% @bookmarks.each do |bookmark| %>
+            <tbody>
+              <tr>
+                <td><%= bookmark.article.user.name %></td>
+                <td>
+                  <%= link_to article_path(bookmark.article) do %>
+                    <%= bookmark.article.title %>
+                  <% end %>
+                </td>
+                <td><%= bookmark.article.content %></td>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+
+    </div>
+  </div>
+</main>

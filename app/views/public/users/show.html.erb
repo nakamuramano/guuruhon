@@ -11,73 +11,33 @@
             <td><%= @user.email %></td>
           </tr>
           <tr>
-            <td><%=link_to "いいね♡" %></td>
+            <td><%=link_to "いいね♡", bookmarks_path(@bookmarks) %></td>
           </tr>
         </tbody>
       </table>
 
-      <table class="table table-borderless">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-    <tr>
-      <th><%= link_to "編集する", edit_user_path(@user.id) %></th>
-      <th><%= link_to "退会する", unsubscribe_path(@user.id) %></th>
-    </tr>
-  </tbody>
-</table>
-
-
-        <table>
-
-        <h5>ブックマーク一覧</h5>
+      <table class='table table-hover table-inverse'>
         <thead>
           <tr>
-            <th>投稿者名</th>
-            <th>タイトル</th>
-            <th>本文</th>
+            <th>Title</th>
+            <th>Content</th>
           </tr>
         </thead>
         <tbody>
-          <% @bookmarks.each do |bookmark| %>
-            <tr>
-              <td><%= bookmark.article.user.name %></td>
-              <td>
-                <%= link_to article_path(bookmark.article) do %>
-                  <%= bookmark.article.title %>
-                <% end %>
-              </td>
-              <td><%= bookmark.article.content %></td>
-            </tr>
+          <% @articles.each do |article| %>
+          <tr>
+            <td>
+              <%= link_to article_path(article.id) do %>
+                <%= article.title %>
+              <% end %>
+            </td>
+            <td><%= article.content %></td>
+          </tr>
           <% end %>
         </tbody>
       </table>
-
-
-
+            <%= link_to "編集する", edit_user_path(@user.id) %>
+            <%= link_to "退会する", unsubscribe_path(@user.id) %>
 
     </div>
   </div>

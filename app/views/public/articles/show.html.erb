@@ -15,12 +15,15 @@
               <% end %>
             </td>
             <td><%= @article.content %></td>
-            <td>
-              <%= link_to 'Edit', edit_admin_article_path(@article.id), class: 'btn btn-success btn-sm' %>
-            </td>
-            <td>
-              <%= link_to 'Destroy', admin_article_path(@article), method: :delete, class:'btn btn-danger btn-sm', "data-confirm" => "本当に削除しますか？" %>
-            </td>
+            <% if @article.user == current_user %>
+              <td>
+                <%= link_to 'Edit', edit_admin_article_path(@article.id), class: 'btn btn-success btn-sm' %>
+              </td>
+              <td>
+                <%= link_to 'Destroy', admin_article_path(@article), method: :delete, class:'btn btn-danger btn-sm', "data-confirm" => "本当に削除しますか？" %>
+              </td>
+            <% end %>
+
             <% if @article.bookmarked_by?(current_user) %>
               <td><%= link_to "いいね♡を外す", article_bookmarks_path(@article), method: :delete %></td>
              <% else %>

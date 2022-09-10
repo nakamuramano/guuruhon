@@ -6,7 +6,7 @@ class Public::ArticlesController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = Article.find(params[:id]).user
     @article = Article.find(params[:id])
     @comment = Comment.new
     @article_tags = @article.tags
