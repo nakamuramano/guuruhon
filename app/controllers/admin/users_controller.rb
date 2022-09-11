@@ -18,7 +18,7 @@ class Admin::UsersController < ApplicationController
     @user.update(user_params)
     redirect_to admin_user_path(@user.id)
   end
-  
+
   def withdraw
     @customer = current_customer
     @customer.update(is_active: false)
@@ -26,11 +26,11 @@ class Admin::UsersController < ApplicationController
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path
   end
-  
+
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :is_active)
+    params.require(:user).permit(:name, :email, :is_active, :profile_image)
   end
 end

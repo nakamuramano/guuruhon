@@ -12,7 +12,6 @@ Rails.application.routes.draw do
    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
    get "search_tag" => "articles#search_tag"
 
-
    resources :users, only: [:show, :edit, :update]
    resources :articles do
      resource :bookmarks, only: [:create, :destroy]
