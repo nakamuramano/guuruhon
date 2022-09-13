@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   scope module: :public do
    post '/guests/guest_sign_in', to: 'guests#new_guest'
    root 'homes#top'
+   get "homes/about" => "homes#about"
    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
    get "search_tag" => "articles#search_tag"

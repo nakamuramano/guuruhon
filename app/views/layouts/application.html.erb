@@ -42,10 +42,10 @@
                 <%= link_to "マイページ", user_path(current_user.id), class: "btn btn-outline-secondary" %>
               </li>
               <li class="nav-item">
-                <%= link_to "おすすめ", new_article_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "みんなのおすすめ", articles_path, class: "btn btn-outline-secondary" %>
               </li>
               <li class="nav-item">
-                <%= link_to "みんなのおすすめ", articles_path, class: "btn btn-outline-secondary" %>
+                <%= link_to "お気に入り♡", class: "btn btn-outline-secondary" %>
               </li>
               <li class="nav-item">
                  <%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-outline-secondary" %>
@@ -63,6 +63,9 @@
 
               <li class="nav-item">
 
+              </li>
+              <li class="nav-item">
+                <%= link_to "About", homes_about_path, class: "btn btn-outline-secondary" %>
               </li>
               <li class="nav-item">
                 <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-secondary" %>

@@ -29,6 +29,8 @@ class Admin::ArticlesController < ApplicationController
     end
 
 
+
+
     private
 
     def article_params
