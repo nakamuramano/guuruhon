@@ -34,11 +34,13 @@ Rails.application.routes.draw do
 
    namespace :admin do
 
-   resources :articles
+   resources :articles do
+       resource :bookmarks, only: [:create, :destroy]
+     end 
 
    resources :users
    resources :comments
-   resources :bookmarks
+   resources :bookmarks, only: [:index]
   end
 
 

@@ -25,6 +25,30 @@
             </tbody>
           <% end %>
         </table>
+        
+        
+        
+        <thead>
+          <tr>
+            <th>投稿者名</th>
+            <th>タイトル</th>
+            <th>本文</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @bookmarks.each do |bookmark| %>
+            <tr>
+              <td><%= bookmark.article.user.name %></td>
+              <td>
+                <%= link_to article_path(bookmark.article) do %>
+                  <%= bookmark.article.title %>
+                <% end %>
+              </td>
+              <td><%= bookmark.article.content %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
 
     </div>
   </div>

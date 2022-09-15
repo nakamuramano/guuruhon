@@ -28,5 +28,7 @@ class Public::BookmarksController < ApplicationController
     end
 
   end
+  
+  
 
 end

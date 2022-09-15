@@ -7,6 +7,7 @@ class Admin::ArticlesController < ApplicationController
     def show
         @article = Article.find(params[:id])
         @user = Article.find(params[:id]).user
+        
     end
 
     def edit

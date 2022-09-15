@@ -26,7 +26,6 @@
             <% end %>
           </tr>
           <tr>
-            <td></td>
             <td><%= link_to "Edit", edit_admin_user_path %></td>
           </tr>
         </tbody>
@@ -57,7 +56,60 @@
             <% end %>
           </tbody>
         </table>
+        
+        
 
+        <h5>ブックマーク一覧</h5>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">user</th>
+              <th scope="col">title</th>
+              <th scope="col">content</th>
+            </tr>
+          </thead>
+          <% @bookmarks.each do |bookmark| %>
+            <tbody>
+              <tr>
+                <td><%= bookmark.article.user.name %></td>
+                <td>
+                  <%= link_to article_path(bookmark.article) do %>
+                    <%= bookmark.article.title %>
+                  <% end %>
+                </td>
+                <td><%= bookmark.article.content %></td>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+        
+        
+        
+        <thead>
+          <tr>
+            <th>投稿者名</th>
+            <th>タイトル</th>
+            <th>本文</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @bookmarks.each do |bookmark| %>
+            <tr>
+              <td><%= bookmark.article.user.name %></td>
+              <td>
+                <%= link_to article_path(bookmark.article) do %>
+                  <%= bookmark.article.title %>
+                <% end %>
+              </td>
+              <td><%= bookmark.article.content %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</main>
 
     </div>
   </div>

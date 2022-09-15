@@ -68,6 +68,8 @@ class Public::ArticlesController < ApplicationController
     Article.find(params[:id]).destroy()
     redirect_to root_path(params[:article_id])
   end
+  
+  
 
   private
 
