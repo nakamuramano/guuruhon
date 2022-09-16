@@ -7,7 +7,8 @@ class Admin::ArticlesController < ApplicationController
     def show
         @article = Article.find(params[:id])
         @user = Article.find(params[:id]).user
-        
+        @comment = Comment.new
+
     end
 
     def edit
@@ -25,7 +26,7 @@ class Admin::ArticlesController < ApplicationController
     end
 
     def destroy
-      Article.find(params[:id]).destroy
+      Article.find(params[:id]).destroy()
       redirect_to root_path(params[:article_id])
     end
 
@@ -35,6 +36,6 @@ class Admin::ArticlesController < ApplicationController
     private
 
     def article_params
-        params.require(:article).permit(:title, :content)
+        params.require(:article).permit(:title, :content, :profile_image)
     end
 end

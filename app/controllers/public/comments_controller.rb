@@ -6,6 +6,12 @@ class Public::CommentsController < ApplicationController
     comment.save
     redirect_to article_path(article)
    end
+   
+  def destroy
+    Comment.find(params[:id]).destroy()
+    redirect_to root_path(params[:article_id])
+  end
+
 
   private
 

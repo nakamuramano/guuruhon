@@ -36,10 +36,10 @@ Rails.application.routes.draw do
 
    resources :articles do
        resource :bookmarks, only: [:create, :destroy]
-     end 
+       resources :comments, only: [:create, :destroy]
+     end
 
    resources :users
-   resources :comments
    resources :bookmarks, only: [:index]
   end
 

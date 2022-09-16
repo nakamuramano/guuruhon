@@ -25,6 +25,18 @@
 
           </tr>
         </table>
+        <div>
+          <p>コメント件数：<%= @article.comments.count %></p>
+          <% @article.comments.each do |comment| %>
+            <p><%= image_tag comment.user.get_profile_image(80,80) %></p>
+               <%= comment.user.name %>
+               <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.body %>
+               <%= link_to "削除", admin_article_comment_path(comment.article, comment), method: :delete %>
+          <% end %>
+        </div>
+
+    </div>
+
     </div>
   </div>
 </main>
