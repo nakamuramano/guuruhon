@@ -11,7 +11,7 @@
         <ul>
           <% @tags.each do |tag| %>
             <li>
-              <%= link_to "#{tag.tag_name} ( Posts: #{tag.articles.count} )", tag_path(tag) %>
+              <%= link_to "#{tag.tag_name} ( #{tag.articles.count} )", tag_path(tag) %>
             </li>
           <% end %>
         </ul>

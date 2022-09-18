@@ -40,9 +40,11 @@
       <h2>Tags --></h2>
         <ul>
           <% @tags.each do |tag| %>
-            <li>
-              <%= link_to "#{tag.tag_name} ( #{tag.articles.count} )", tag_path(tag) %>
-            </li>
+            <% if tag.articles.count !=0 %>
+              <li>
+                <%= link_to "#{tag.tag_name} ( #{tag.articles.count} )", tag_path(tag) %>
+              </li>
+            <% end %>
           <% end %>
         </ul>
 
