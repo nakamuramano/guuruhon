@@ -22,9 +22,19 @@
               <td>
                 <%= link_to 'Destroy', admin_article_path(@article), method: :delete, class:'btn btn-danger btn-sm', "data-confirm" => "本当に削除しますか？" %>
               </td>
+          </tr>
+        </table>
+
+      <% @article_tags.each do |tag| %>
+        <%= link_to tag.tag_name,search_tag_path(tag_id: tag.id) %><%="(#{tag.articles.count})" %>
+      <% end %>
 
           </tr>
         </table>
+
+
+
+
         <div>
           <p>コメント件数：<%= @article.comments.count %></p>
           <% @article.comments.each do |comment| %>
@@ -32,12 +42,6 @@
                <%= comment.user.name %>
                <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.body %>
                <%= link_to "削除", admin_article_comment_path(comment.article, comment), method: :delete %>
-          <% end %>
-        </div>
-        <div>
-          <%= form_with model: [@article, @comment] do |f| %>
-            <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
-            <%= f.submit "送信する" %>
           <% end %>
         </div>
 

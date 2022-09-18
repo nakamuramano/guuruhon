@@ -13,8 +13,6 @@
           </div>
           <div class="form-group">
           </div>
-  		  <%= link_to "Show", admin_article_path(@article.id) %> |
-  		  <%= link_to "Back", admin_articles_path %>
 
         <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
         <%= f.text_field :tag_name,value: @tag_list,class:"form-control"%>
@@ -23,6 +21,10 @@
           <%= f.submit "投稿" %>
         </div>
       <% end %>
+      
+      <%= link_to "Show", admin_article_path(@article.id) %> |
+  		<%= link_to "Back", admin_articles_path %>
+
     </div>
   </div>
 </main>

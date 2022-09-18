@@ -38,7 +38,7 @@ Rails.application.routes.draw do
        resource :bookmarks, only: [:create, :destroy]
        resources :comments, only: [:create, :destroy]
      end
-
+   resources :tags
    resources :users
    resources :bookmarks, only: [:index]
   end

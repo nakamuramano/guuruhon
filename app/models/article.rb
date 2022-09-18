@@ -2,8 +2,8 @@ class Article < ApplicationRecord
 
   belongs_to :user
 
-  has_many :article_tags,dependent: :destroy
-  has_many :tags,through: :article_tags
+  has_many :article_tags, dependent: :destroy
+  has_many :tags, through: :article_tags
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
@@ -16,7 +16,7 @@ class Article < ApplicationRecord
     new_tags = sent_tags - current_tags
 
     old_tags.each do |old|
-      self.tags.delete　Tag.find_by(tag_name: old)
+      self.tags.delete Tag.find_by(tag_name: old)
     end
 
     new_tags.each do |new|

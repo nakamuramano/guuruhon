@@ -8,7 +8,7 @@ class Admin::ArticlesController < ApplicationController
         @article = Article.find(params[:id])
         @user = Article.find(params[:id]).user
         @comment = Comment.new
-
+        @article_tags = @article.tags
     end
 
     def edit
@@ -24,6 +24,21 @@ class Admin::ArticlesController < ApplicationController
             render :edit
           end
     end
+
+  def search_tag
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @articles = @tag.articles.all
+  end
+
+  def search
+    if params[:content].present?
+      @articles = Article.where('content LIKE ?', "%#{params[:content]}%")
+      @content = params[:content]
+    else
+      @articles = Article.all
+    end
+  end
 
     def destroy
       Article.find(params[:id]).destroy()

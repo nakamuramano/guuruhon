@@ -56,8 +56,8 @@
             <% end %>
           </tbody>
         </table>
-        
-        
+
+
 
         <h5>ブックマーク一覧</h5>
         <table class="table table-striped">
@@ -73,7 +73,7 @@
               <tr>
                 <td><%= bookmark.article.user.name %></td>
                 <td>
-                  <%= link_to article_path(bookmark.article) do %>
+                  <%= link_to admin_article_path(bookmark.article) do %>
                     <%= bookmark.article.title %>
                   <% end %>
                 </td>
@@ -82,9 +82,9 @@
             </tbody>
           <% end %>
         </table>
-        
-        
-        
+
+
+
         <thead>
           <tr>
             <th>投稿者名</th>
