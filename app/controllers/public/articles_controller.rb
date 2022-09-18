@@ -3,6 +3,7 @@ class Public::ArticlesController < ApplicationController
   def index
     @articles = Article.all
     @tag_list=Tag.all
+    @tags = Tag.all
   end
 
   def show

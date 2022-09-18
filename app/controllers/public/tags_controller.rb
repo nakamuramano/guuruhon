@@ -6,6 +6,8 @@ class Public::TagsController < ApplicationController
 
   def show
     @tag = Tag.find(params[:id])
+    @articles = @tag.articles.all
+
   end
 
 

@@ -43,10 +43,16 @@
         <%="(#{list.articles.count})" %>
       <% end %>
 
-      投稿一覧画面で投稿に紐づくタグを表示
-      <% @articles.each do |article| %>
-       <%= article.tags.map(&:tag_name).join(",") %>
-      <% end %>
+      <h2>Tags --></h2>
+        <ul>
+          <% @tags.each do |tag| %>
+            <li>
+              <%= link_to "#{tag.tag_name} ( #{tag.articles.count} )", tag_path(tag) %>
+            </li>
+          <% end %>
+        </ul>
+
+
 
     </div>
   </div>

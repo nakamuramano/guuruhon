@@ -1,16 +1,10 @@
 <main>
   <div class="container">
     <div class="row">
-      <h1>Tags#show</h1>
-      <p>Find me in app/views/tags/show.html.erb</p>
+      <div><%= link_to 'Tags List', tags_path %></div>
+      <div><%= link_to 'Delete', tag_path(@tag), method: :delete, data: {confirm: '関連づいた記事のタグが空になりますがタグを削除しますか？'} %></div>
 
-      <h2>Actions --></h2>
-      <%= link_to 'Tags List', tags_path %>
-      <%= link_to 'Delete', tag_path(@tag), method: :delete, data: {confirm: '関連づいた記事のタグが空になりますがタグを削除しますか？'} %>
-
-      <h2>Tag --></h2>
-
-      <h3><%= @tag.tag_name %></h3>
+      <h4>タグが<%= @tag.tag_name%>の投稿一覧</h4>
 
       <ul>
         <% @tag.articles.each do |article| %>
@@ -19,7 +13,6 @@
           </li>
         <% end %>
       </ul>
-
 
     </div>
   </div>

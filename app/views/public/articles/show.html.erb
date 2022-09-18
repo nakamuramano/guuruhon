@@ -33,7 +33,7 @@
         </table>
 
       <% @article_tags.each do |tag| %>
-        <%= link_to tag.tag_name,search_tag_path(tag_id: tag.id) %><%="(#{tag.articles.count})" %>
+        <%= link_to tag.tag_name, tag_path(tag) %><%="(#{tag.articles.count})" %>
       <% end %>
 
       <div>
