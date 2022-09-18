@@ -5,6 +5,13 @@
         <%= search.text_field :content %>
         <%= search.submit "検索" %>
       <% end %>
+
+      <div class="icon">
+        <%= link_to new_article_path do %>
+          <%= image_tag  'icon_111070_256.png', size: "20x20" %>あなたのおすすめ
+        <% end %>
+      </div>
+
       <table class="table table-borderless">
         <% @articles.each do |article|%>
           <tbody>

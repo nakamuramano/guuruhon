@@ -50,26 +50,25 @@ class Public::ArticlesController < ApplicationController
 
   def update
       @article = Article.find(params[:id])
-      tag_list = params[:post][:tag_name].split(",")
+      tag_list = params[:article][:tag_name].split(",")
     if @article.update(article_params)
        @old_relations = ArticleTag.where(article_id: @article.id)
        @old_relations.each do |relation|
-        relation.delete
+         relation.delete
        end
-        @article.save_tag(tag_list)
-        redirect_to article_path(@article.id), notice: '更新完了しました:)'
+       @article.save_tag(tag_list)
+       redirect_to article_path(@article.id)
     else
-      render :edit
+       render:edit
     end
-
   end
 
   def destroy
     Article.find(params[:id]).destroy()
     redirect_to root_path(params[:article_id])
   end
-  
-  
+
+
 
   private
 
