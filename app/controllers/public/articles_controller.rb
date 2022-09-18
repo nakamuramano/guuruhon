@@ -29,16 +29,16 @@ class Public::ArticlesController < ApplicationController
     end
   end
 
-  def search_tag
-    @tag_list = Tag.all
-    @tag = Tag.find(params[:tag_id])
-    @articles = @tag.articles.all
-  end
+  #def search_tag
+   # @tag_list = Tag.all
+   # @tag = Tag.find(params[:tag_id])
+    #@articles = @tag.articles.all
+ # end
 
   def search
-    if params[:content].present?
-      @articles = Article.where('content LIKE ?', "%#{params[:content]}%")
-      @content = params[:content]
+    if params[:title].present?
+      @articles = Article.where('title LIKE ?', "%#{params[:title]}%")
+      @content = params[:title]
     else
       @articles = Article.all
     end
