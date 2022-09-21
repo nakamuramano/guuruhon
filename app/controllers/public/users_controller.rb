@@ -13,7 +13,9 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
+    if @user.email == 'guest@example.com'
+      redirect_to user_path(@user), alert: 'ゲストユーザーの変更・削除はできません。'
+    elsif @user.update(user_params)
        flash[:notice] = "You have updated user successfully."
        redirect_to  user_path(@user.id)
     else
@@ -23,10 +25,14 @@ class Public::UsersController < ApplicationController
 
   def withdrawal
     @user = User.find(params[:id])
-    @user.update(is_active: false)
-    reset_session
-    flash[:notice] = "退会処理を実行いたしました"
-    redirect_to root_path
+    if @user.email == 'guest@example.com'
+      redirect_to user_path(@user), alert: 'ゲストユーザーの変更・削除はできません。'
+    else
+      @user.update(is_active: false)
+      reset_session
+      flash[:notice] = "退会処理を実行いたしました"
+      redirect_to root_path
+    end
   end
 
 

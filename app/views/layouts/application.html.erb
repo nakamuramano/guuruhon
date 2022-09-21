@@ -6,85 +6,85 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
-         <% if admin_signed_in? %>
-    <header>
-      <nav class="navbar navbar-expand-lg" >
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-             <li class="nav-item">
-                <%= link_to "投稿一覧", admin_articles_path, class: "btn btn-outline-secondary" %>
+    <header style="text-align: center;">
+      <%= link_to (admin_signed_in? ? admin_top_path : root_path ), class: "logo" do %>
+        <%= image_tag 'logo.png', size: "200x200" %>
+      <% end %>
+    </header>
+      <% if admin_signed_in? %>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                <p><%= link_to "投稿一覧", admin_articles_path %></p>
               </li>
-              <li class="nav-item">
-                <%= link_to "会員一覧", admin_users_path, class: "btn btn-outline-secondary" %>
+              <li class="nav-item active">
+                <p><%= link_to "会員一覧", admin_users_path %></p>
               </li>
-              <li class="nav-item">
-                <%= link_to "タグ一覧", admin_tags_path, class: "btn btn-outline-secondary" %>
+              <li class="nav-item active">
+                <p><%= link_to "タグ一覧", admin_tags_path %></p>
               </li>
-              <li class="nav-item">
-                <%= link_to "ログアウト", destroy_admin_session_path, class: "btn btn-outline-secondary" %>
+              <li class="nav-item active">
+                <p><%= link_to "ログアウト", destroy_admin_session_path %></p>
               </li>
 
             <% elsif user_signed_in? %>
-                <header style="margin: 20px 20px">
-      <nav class="navbar navbar-expand-lg" >
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <%= alert %>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <%= link_to "マイページ", user_path(current_user.id), class: "btn btn-outline-secondary" %>
+              <p><%= alert %></p>
+              <li>
+                <p><%= link_to "マイページ", user_path(current_user.id) %></P>
               </li>
-              <li class="nav-item">
-                <%= link_to "みんなのおすすめ", articles_path, class: "btn btn-outline-secondary" %>
+              <li>
+                <%= link_to "みんなのおすすめ", articles_path %>
               </li>
-              <li class="nav-item">
-                <%= link_to "お気に入り♡", bookmarks_path(current_user.id), class: "btn btn-outline-secondary" %>
+              <li>
+                <%= link_to "お気に入り♡", bookmarks_path(current_user.id) %>
               </li>
-              <li class="nav-item">
-                 <%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-outline-secondary" %>
+              <li>
+                 <%= link_to "ログアウト", destroy_user_session_path %>
               </li>
 
             <% else %>
-                <header style="margin: 20px 20px">
+ <header>
       <nav class="navbar navbar-expand-lg" >
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
-
-
-              <li class="nav-item">
-
+             <li class="nav-item">              <li>
+                <p><%= link_to "HOME", root_path %></p>
               </li>
-              <li class="nav-item">
-                <%= link_to "About", homes_about_path, class: "btn btn-outline-secondary" %>
+              <li>
+                <p><%= link_to "新規登録", new_user_registration_path %></p>
               </li>
-              <li class="nav-item">
-                <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-secondary" %>
+              <li>
+                <p><%= link_to "ログイン",  new_user_session_path %></p>
               </li>
-              <li class="nav-item">
-                <%= link_to "ログイン",  new_user_session_path, class: "btn btn-outline-secondary" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path, method: :post, class: "btn btn-outline-secondary" %>
+              <li>
+                <p><%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path %></p>
               </li>
             <% end %>
+          </ul>
           </ul>
         </div>
       </nav>
 
   </header>
-    <%= yield %>
+
+  <main>
+  <%= yield %>
+  </main>
+
   </body>
+
+  <footer><div>Logo made by <a href="https://www.designevo.com/" title="Free Online Logo Maker">DesignEvo free logo creator</a></div></footer>
 </html>

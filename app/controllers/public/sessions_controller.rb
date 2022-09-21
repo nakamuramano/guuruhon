@@ -6,17 +6,7 @@ class Public::SessionsController < Devise::SessionsController
    root_path(resource)
   end
 
-  def user_state
-    @user = User.find_by(email: params[:user][:email])
-    if @user
-      if @user.valid_password?(params[:user][:email]) && (@user.is_active == true)
-         flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
-         redirect_to new_user_registration
-      else
-         flash[:notice] = "項目を入力してください"
-      end
-    end
-  end
+  
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

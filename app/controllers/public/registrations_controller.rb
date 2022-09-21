@@ -6,12 +6,12 @@ class Public::RegistrationsController < Devise::RegistrationsController
      root_path(resource)
    end
 
-   before_action :check_guest, only: %i[update destroy]
- def check_guest
-   if resource.email == 'guest@example.com'
-     redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
-   end
- end
+   #before_action :check_guest, only: [:update, :destroy]
+ #def check_guest
+   #if resource.email == 'guest@example.com'
+    # redirect_to root_path, alert: 'ゲストユーザーの変更・削除はできません。'
+   #end
+
 
  # before_action :check_guest, only: :destroy
  #def check_guest
