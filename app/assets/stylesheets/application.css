@@ -50,20 +50,30 @@ body {
   color: #333;
 
 }
+main {
+  padding: 100px 0;
+}
+
+header{
+  height: 150px;
+}
+
+.header_inner{
+  display: flex;
+  justify-content: center;
+}
+
+.header_description{
+  padding-top: 50px;
+}
 
 footer {
   padding: 15px 0;
   font-size: 14px;
   text-align: center;
-  background-color: #fff8dc;
+  background-color: #ffdab9;
 }
 
-.nav-content {
-    display: flex;
-    justify-content: space-between;
-    width: 960px;
-    margin: 0 auto;
-}
 
 ul{
  display: flex;
@@ -71,9 +81,6 @@ ul{
 li{
   list-style: none;
   margin-left: 10px;
-}
-
-.logo{
 }
 
 .inner {
@@ -85,11 +92,10 @@ li{
   font-size: 32px;
   font-weight: bold;
   text-align: center;
-  padding-top: 50px;
   margin-bottom: 30px;
 }
 nav{
-  background-color: #fff8dc;
+  background-color: #ffdab9;
   margin: 0 auto;
  }
  p {

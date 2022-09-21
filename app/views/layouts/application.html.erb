@@ -12,18 +12,27 @@
   </head>
 
   <body>
-    <header style="text-align: center;">
-      <%= link_to (admin_signed_in? ? admin_top_path : root_path ), class: "logo" do %>
-        <%= image_tag 'logo.png', size: "200x200" %>
-      <% end %>
+    <header>
+      <div class="header_inner">
+        <%= link_to (admin_signed_in? ? admin_top_path : root_path ) do %>
+          <%= image_tag 'logo.png', size: "180x180" %>
+        <% end %>
+        <div class="header_description">
+          美味しそうでぐぅ〜とお腹が鳴ってしまうような料理や食べ物が出てくる</br>
+          おすすめ小説・エッセイなどを閲覧、投稿などできるサイトです。</br>
+          今日の献立はお気に入りの本から決めてみませんか？</br>
+        </div>
+      </div>
     </header>
-      <% if admin_signed_in? %>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+
+        <nav class="navbar navbar-expand-lg" >
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <% if admin_signed_in? %>
+
+            <ul class="navbar-nav ml-auto">
               <li class="nav-item active">
                 <p><%= link_to "投稿一覧", admin_articles_path %></p>
               </li>
@@ -36,49 +45,39 @@
               <li class="nav-item active">
                 <p><%= link_to "ログアウト", destroy_admin_session_path %></p>
               </li>
+              </ul>
+      <% elsif user_signed_in? %>
+                <li class="nav-item active">
+                  <p><%= link_to "マイページ", user_path(current_user.id) %></P>
+                </li>
+                <li class="nav-item active">
+                  <p><%= link_to "みんなのおすすめ", articles_path %></p>
+                </li>
+                <li class="nav-item active">
+                  <p><%= link_to "お気に入り♡", bookmarks_path(current_user.id) %></p>
+                </li>
+                <li class="nav-item active">
+                  <p><%= link_to "ログアウト", destroy_user_session_path %></p>
+                </li>
+              </ul>
 
-            <% elsif user_signed_in? %>
-              <p><%= alert %></p>
-              <li>
-                <p><%= link_to "マイページ", user_path(current_user.id) %></P>
-              </li>
-              <li>
-                <%= link_to "みんなのおすすめ", articles_path %>
-              </li>
-              <li>
-                <%= link_to "お気に入り♡", bookmarks_path(current_user.id) %>
-              </li>
-              <li>
-                 <%= link_to "ログアウト", destroy_user_session_path %>
-              </li>
-
-            <% else %>
- <header>
-      <nav class="navbar navbar-expand-lg" >
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ml-auto">
-             <li class="nav-item">              <li>
-                <p><%= link_to "HOME", root_path %></p>
-              </li>
-              <li>
-                <p><%= link_to "新規登録", new_user_registration_path %></p>
-              </li>
-              <li>
-                <p><%= link_to "ログイン",  new_user_session_path %></p>
-              </li>
-              <li>
-                <p><%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path %></p>
-              </li>
-            <% end %>
-          </ul>
-          </ul>
-        </div>
-      </nav>
-
-  </header>
+      <% else %>
+                <li class="nav-item active">
+                  <p><%= link_to "HOME", root_path %></p>
+                </li>
+                <li class="nav-item active">
+                  <p><%= link_to "新規登録", new_user_registration_path %></p>
+                </li>
+                <li class="nav-item active">
+                  <p><%= link_to "ログイン",  new_user_session_path %></p>
+                </li>
+                <li class="nav-item active">
+                  <p><%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path, method: :post %></p>
+                </li>
+              </ul>
+      <% end %>
+            </div>
+         </nav>
 
   <main>
   <%= yield %>
