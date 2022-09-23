@@ -1,24 +1,18 @@
-<main>
-  <div class="container">
-    <div class="row">
-      <h3>新規投稿</h3>
+  <div class="inner">
+    <h3 class="section-ttl">投稿してみよう</h3>
       <%= form_with model: @article, url: '/articles', method: :post do |f| %>
 
         <label>タイトル</label>
-        <p><%= f.text_field :title %></p>
+        <p><%= f.text_field :title, :size=>"60" %></p>
 
         <label>本文</label>
-        <p><%= f.text_area :content %></p>
+        <p><%= f.text_area :content, :size=>"60" %></p>
 
         <label>タグ</label>
-        <p><%= f.text_field :tag_names, placeholder:",で区切ってください" %></p>
+        <p><%= f.text_field :tag_names, :size=>"60", placeholder:"例）おにぎり,和食が食べたくなる!" %></p>
 
-
-
-        <%= f.submit '投稿' %>
+        <%= f.submit '投稿する' %>
 
       <% end %>
 
-    </div>
   </div>
-</main>

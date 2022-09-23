@@ -4,6 +4,8 @@ class Public::ArticlesController < ApplicationController
     @articles = Article.all
     @tag_list=Tag.all
     @tags = Tag.all
+    @user = current_user
+    @bookmarks = Bookmark.where(user_id: current_user.id)
   end
 
   def show

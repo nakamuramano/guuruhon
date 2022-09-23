@@ -20,7 +20,8 @@
         <div class="header_description">
           美味しそうでぐぅ〜とお腹が鳴ってしまうような料理や食べ物が出てくる</br>
           おすすめ小説・エッセイなどを閲覧、投稿などできるサイトです。</br>
-          今日の献立はお気に入りの本から決めてみませんか？</br>
+          <%= notice %><%= alert %>
+
         </div>
       </div>
     </header>
@@ -80,10 +81,19 @@
          </nav>
 
   <main>
-  <%= yield %>
+    <%= yield %>
   </main>
+
+  <footer>
+    <div class="container mt-5">
+      <div class="row">
+        <div  class="mx-auto">
+          <div>Logo made by <a href="https://www.designevo.com/" title="Free Online Logo Maker">DesignEvo free logo creator</a></div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   </body>
 
-  <footer><div>Logo made by <a href="https://www.designevo.com/" title="Free Online Logo Maker">DesignEvo free logo creator</a></div></footer>
 </html>
