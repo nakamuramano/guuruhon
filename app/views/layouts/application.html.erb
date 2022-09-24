@@ -12,20 +12,30 @@
   </head>
 
   <body>
-    <header>
-      <div class="header_inner">
-        <%= link_to (admin_signed_in? ? admin_top_path : root_path ) do %>
-          <%= image_tag 'logo.png', size: "180x180" %>
-        <% end %>
-        <div class="header_description">
-          美味しそうでぐぅ〜とお腹が鳴ってしまうような料理や食べ物が出てくる</br>
-          おすすめ小説・エッセイなどを閲覧、投稿などできるサイトです。</br>
-          <%= notice %><%= alert %>
+    <div class="container">
+      <div class="row">
 
-        </div>
+        <header>
+          <div class="header_inner">
+            <%= link_to (admin_signed_in? ? admin_top_path : root_path ) do %>
+              <%= image_tag 'logo.png', size: "180x180" %>
+            <% end %>
+            <div class="header_description">
+              美味しそうでぐぅ〜とお腹が鳴ってしまうような料理や食べ物が出てくる</br>
+              おすすめ小説・エッセイなどを閲覧、投稿などできるサイトです。</br>
+              <%= notice %><%= alert %>
+            </div>
+            <div class="header_search">
+              <%= form_with url: search_articles_path, local: true, method: :get do |search| %>
+                <%= search.text_field :title, placeholder:"本を詮索" %>
+                <%= search.submit "検索" %>
+              <% end %>
+            </div>
+          </div>
+        </header>
       </div>
-    </header>
-
+    </div>
+    
         <nav class="navbar navbar-expand-lg" >
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -49,7 +59,7 @@
               </ul>
       <% elsif user_signed_in? %>
                 <li class="nav-item active">
-                  <p><%= link_to "マイページ", user_path(current_user.id) %></P>
+                  <p><i class="fas fa-arrow-right"></i><%= link_to "マイページ", user_path(current_user.id) %></P>
                 </li>
                 <li class="nav-item active">
                   <p><%= link_to "みんなのおすすめ", articles_path %></p>
@@ -80,7 +90,7 @@
             </div>
          </nav>
 
-  <main>
+  <main style="background-color:#fffaf0;">
     <%= yield %>
   </main>
 

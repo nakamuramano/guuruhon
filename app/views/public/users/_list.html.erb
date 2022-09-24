@@ -1,4 +1,3 @@
- <div class='col-md-3'>
 
       <%= image_tag @user.get_profile_image(80,80) %>
       <table class="table table-hover">
@@ -12,7 +11,12 @@
           <tr>
             <td><%=link_to "いいね♡", bookmarks_path(@bookmarks) %></td>
           </tr>
+          <tr>
+            <td>
+            </td>
+          </tr>
         </tbody>
       </table>
+              <%= link_to "編集する", edit_user_path(@user.id), class: "btn btn btn--radius" %>
+              <%= link_to "退会する", unsubscribe_path(@user.id), class: "btn btn btn--radius" %>
 
-</div>

@@ -1,12 +1,14 @@
-  <div class="container px-5 px-sm-0">
+  <div class="container">
     <div class="row">
       <div class='col-md-3'>
+      　<%= render 'public/users/list', bookmark: @bookmarks, user: @user %>
+      　
+        <div class="icon">
+          <%= link_to new_article_path do %>
+            <%= image_tag  'icon_111070_256.png', size: "20x20" %>あなたのおすすめ
+          <% end %>
+        </div>
 
-      <p id="notice"><%= notice %></p>
-        <%= form_with url: search_articles_path, local: true, method: :get do |search| %>
-          <%= search.text_field :title %>
-          <%= search.submit "検索" %>
-        <% end %>
 
         <table class="table table-borderless">
           <% @tags.each do |tag| %>
@@ -23,11 +25,6 @@
             </tbody>
           <% end %>
         </table>
-        <div class="icon">
-          <%= link_to new_article_path do %>
-            <%= image_tag  'icon_111070_256.png', size: "20x20" %>あなたのおすすめ
-          <% end %>
-        </div>
       </div>
 
       <div class='col-md-8 offset-md-1'>
@@ -56,8 +53,6 @@
           <% end %>
         </table>
       </div>
-
-    　<%= render 'public/users/list', bookmark: @bookmarks, user: @user %>
 
     </div>
   </div>
