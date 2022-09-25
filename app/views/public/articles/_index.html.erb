@@ -1,0 +1,16 @@
+<div class="tag-table">
+    <h6>タグから探す<i class="fa-solid fa-magnifying-glass"></i></h6>
+        <table class="table table-borderless">
+          <% @tags.each do |tag| %>
+            <tbody>
+              <tr>
+                <th>
+                    <td>
+                      <%= link_to "#{tag.tag_name} ( #{tag.articles.count} )", tag_path(tag), class: "link" %>
+                    </td>
+                </th>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+</div>

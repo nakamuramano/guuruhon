@@ -1,5 +1,4 @@
 class Public::ArticlesController < ApplicationController
-
   def index
     @articles = Article.all
     @tag_list=Tag.all
@@ -17,6 +16,9 @@ class Public::ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @user = current_user
+    @bookmarks = Bookmark.where(user_id: current_user.id)
+    @tags = Tag.all
   end
 
   def create

@@ -1,6 +1,6 @@
 
       <%= image_tag @user.get_profile_image(80,80) %>
-      <table class="table table-hover">
+      <table class="table">
         <tbody>
           <tr>
             <td><%= @user.name %></td>
@@ -9,10 +9,13 @@
             <td><%= @user.email %></td>
           </tr>
           <tr>
-            <td><%=link_to "いいね♡", bookmarks_path(@bookmarks) %></td>
+            <td><%=link_to "お気に入り", bookmarks_path(@bookmarks), class: "link" %></td>
           </tr>
           <tr>
             <td>
+              <%= link_to new_article_path, class: "link" do %>
+                おすすめの本を紹介する<%= image_tag  'icon_111070_256.png', size: "20x20" %>
+              <% end %>
             </td>
           </tr>
         </tbody>

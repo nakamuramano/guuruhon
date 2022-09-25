@@ -3,7 +3,7 @@
 class Public::RegistrationsController < Devise::RegistrationsController
 
    def after_sign_up_path_for(resource)
-     root_path(resource)
+      articles_path(resource)
    end
 
    #before_action :check_guest, only: [:update, :destroy]

@@ -1,51 +1,31 @@
   <div class="container">
     <div class="row">
       <div class='col-md-3'>
-      　<%= render 'public/users/list', bookmark: @bookmarks, user: @user %>
-      　
-        <div class="icon">
-          <%= link_to new_article_path do %>
-            <%= image_tag  'icon_111070_256.png', size: "20x20" %>あなたのおすすめ
-          <% end %>
-        </div>
+        <%= render 'public/users/list', bookmark: @bookmarks, user: @user %>
 
+        <%= render 'index', tag: @tags %>
 
-        <table class="table table-borderless">
-          <% @tags.each do |tag| %>
-            <tbody>
-              <tr>
-                <th>
-                  <% if tag.articles.count !=0 %>
-                    <td>
-                      <%= link_to "#{tag.tag_name} ( #{tag.articles.count} )", tag_path(tag) %>
-                    </td>
-                  <% end %>
-                </th>
-              </tr>
-            </tbody>
-          <% end %>
-        </table>
       </div>
 
       <div class='col-md-8 offset-md-1'>
-        <table class="table table-borderless">
+        <table class="table">
           <% @articles.each do |article|%>
             <tbody>
               <tr>
-                <th scope="row">
+                <th>
                   <%= link_to user_path(article.user.id) do %>
                      <%= image_tag article.user.get_profile_image(80,80) %>
                   <% end %>
                   <p></p>
                 </th>
                 <td>
-                   <%= link_to article_path(article.id) do %>
+                   <%= link_to article_path(article.id), class: "link" do %>
                       <%= article.title %>
                     <% end %>
                 </td>
                 <td><%= article.content %></td>
                 <td>
-                  <%= link_to "#{article.comments.count} コメント", article_path(article.id) %>
+                  <%= link_to "#{article.comments.count} コメント", article_path(article.id), class: "link" %>
                 </td>
               </tr>
               <tr>

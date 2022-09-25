@@ -21,6 +21,7 @@
   -o-transition: .25s ease-in-out;
   transition: .25s ease-in-out;
 }
+
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, address, cite, code,
@@ -40,6 +41,7 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline;
 }
+
 article, aside, details, figcaption, figure,
 footer, header, nav, section {
   display: block;
@@ -223,11 +225,12 @@ a {
 }
 
 main {
-  padding: 100px 0;
+  padding: 30px 0;
 }
 
 header{
-  height: 150px;
+  height: 106px;
+  width: 100%;
 }
 
 .header_inner{
@@ -235,18 +238,29 @@ header{
   justify-content: center;
 }
 
-.header_description, .icon{
-  padding-top: 50px;
+.header_description{
+  font-size: 13px;
+  padding: 0px 15px;
 }
+
+.header_description, .icon{
+  padding-top: 40px;
+}
+
+.logo{
+  padding-top: 9px;
+}
+
 .header_search{
-  padding: 60px 50px;
+  padding: 50px 100px;
 }
 
 footer {
-  padding: 15px 0;
+  padding: 20px 0;
   font-size: 14px;
   text-align: center;
   background-color: #f08080;
+  line-height: 20px;
 }
 
 
@@ -261,8 +275,16 @@ li{
 .inner {
   width: 540px;
   margin: 0 auto;
+  margin-bottom: 30px;
 
 }
+
+.inner-unsubscribe{
+  width: 600px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
 .bookmarks_inner{
   width: 900px;
   margin: 0 auto;
@@ -270,15 +292,18 @@ li{
 
 
 .section-ttl {
-  font-size: 32px;
+  font-size: 20px;
   font-weight: bold;
   text-align: center;
   margin-bottom: 30px;
 }
+
 nav{
   background-color: #f08080;
   margin: 0 auto;
+  height: 60px;
  }
+
  p {
   padding: 10px 20px 10px 10px;
   }
@@ -288,7 +313,35 @@ nav{
 }
 
 a.btn--radius {
-   border-radius: 100vh;
-   color: #fff;
+  border-radius: 100vh;
+  color: #fff;
   background-color: #f08080;
+}
+
+.btn--radius{
+  border-radius: 100vh;
+  color: #fff;
+  background-color: #f08080;
+}
+
+.link{
+  color: #800000;
+}
+.logo-link{
+  color: #fff;
+}
+
+#alert{
+  padding-left: 180px;
+}
+
+.col-md-3, .col-md-8, .unsubscribe{
+  background-color: #fff;
+  border-top: 3px solid #bc8f8f;
+  border-bottom: 3px solid #bc8f8f;
+}
+
+.tag-table{
+  font-size: 15px;
+  padding: 20px 30px 0px 5px;
 }

@@ -17,25 +17,26 @@
 
         <header>
           <div class="header_inner">
-            <%= link_to (admin_signed_in? ? admin_top_path : root_path ) do %>
-              <%= image_tag 'logo.png', size: "180x180" %>
+            <%= link_to root_path, class: "logo" do %>
+              <%= image_tag 'logo.jpg', size: "100x100" %>
             <% end %>
             <div class="header_description">
               美味しそうでぐぅ〜とお腹が鳴ってしまうような料理や食べ物が出てくる</br>
               おすすめ小説・エッセイなどを閲覧、投稿などできるサイトです。</br>
-              <%= notice %><%= alert %>
             </div>
+
             <div class="header_search">
               <%= form_with url: search_articles_path, local: true, method: :get do |search| %>
-                <%= search.text_field :title, placeholder:"本を詮索" %>
-                <%= search.submit "検索" %>
+                <%= search.text_field :title, placeholder:"本のタイトル" %>
+                <%= search.submit "検索", class: "btn--radius" %>
               <% end %>
             </div>
+
           </div>
         </header>
       </div>
     </div>
-    
+
         <nav class="navbar navbar-expand-lg" >
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,62 +44,116 @@
           <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <% if admin_signed_in? %>
 
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav auto">
               <li class="nav-item active">
-                <p><%= link_to "投稿一覧", admin_articles_path %></p>
+                <p>
+                  <%= link_to admin_articles_path, class: 'text-light' do %>
+                    <i class="fa-solid fa-utensils"></i>投稿一覧
+                  <% end %>
+                </p>
               </li>
               <li class="nav-item active">
-                <p><%= link_to "会員一覧", admin_users_path %></p>
+                <p>
+                  <%= link_to admin_users_path, class: 'text-light' do %>
+                    <i class="fa-solid fa-ice-cream"></i> 会員一覧
+                  <% end %>
+                </p>
               </li>
               <li class="nav-item active">
-                <p><%= link_to "タグ一覧", admin_tags_path %></p>
+                <p>
+                  <%= link_to admin_tags_path, class: 'text-light' do %>
+                    <i class="fa-solid fa-mug-saucer"></i> タグ一覧
+                  <% end %>
+                </p>
               </li>
               <li class="nav-item active">
-                <p><%= link_to "ログアウト", destroy_admin_session_path %></p>
+                <p>
+                  <%= link_to destroy_admin_session_path, class: 'text-light' do %>
+                    <i class="fa-solid fa-carrot"></i> ログアウト
+                  <% end %>
+                </p>
               </li>
               </ul>
       <% elsif user_signed_in? %>
+              <ul class="navbar-nav auto">
                 <li class="nav-item active">
-                  <p><i class="fas fa-arrow-right"></i><%= link_to "マイページ", user_path(current_user.id) %></P>
+                  <p>
+                    <%= link_to user_path(current_user.id), class: 'text-light' do %>
+                      <i class="fa-solid fa-utensils"></i> マイページ
+                    <% end %>
+                  </P>
                 </li>
                 <li class="nav-item active">
-                  <p><%= link_to "みんなのおすすめ", articles_path %></p>
+                  <p>
+                    <%= link_to articles_path, class: 'text-light' do %>
+                      <i class="fa-solid fa-ice-cream"></i> みんなのおすすめ
+                    <% end %>
+                  </p>
                 </li>
                 <li class="nav-item active">
-                  <p><%= link_to "お気に入り♡", bookmarks_path(current_user.id) %></p>
+                  <p>
+                    <%= link_to bookmarks_path(current_user.id), class: 'text-light' do %>
+                      <i class="fa-solid fa-mug-saucer"></i> お気に入り
+                    <% end %>
+                  </p>
                 </li>
                 <li class="nav-item active">
-                  <p><%= link_to "ログアウト", destroy_user_session_path %></p>
+                  <p>
+                    <%= link_to destroy_user_session_path, class: 'text-light' do %>
+                      <i class="fa-solid fa-carrot"></i> ログアウト
+                    <% end %>
+                  </p>
                 </li>
               </ul>
 
       <% else %>
+              <ul class="navbar-nav auto">
                 <li class="nav-item active">
-                  <p><%= link_to "HOME", root_path %></p>
+                  <p>
+                    <%= link_to root_path, class: 'text-light' do %>
+                      <i class="fa-solid fa-utensils"></i> HOME
+                    <% end %>
+                  </p>
                 </li>
                 <li class="nav-item active">
-                  <p><%= link_to "新規登録", new_user_registration_path %></p>
+                  <p>
+                    <%= link_to new_user_registration_path, class: 'text-light' do %>
+                      <i class="fa-solid fa-ice-cream"></i> 新規登録
+                    <% end %>
+                  </p>
                 </li>
                 <li class="nav-item active">
-                  <p><%= link_to "ログイン",  new_user_session_path %></p>
+                  <p>
+                    <%= link_to new_user_session_path, class: 'text-light' do %>
+                      <i class="fa-solid fa-mug-saucer"></i> ログイン
+                    <% end %>
+                  </p>
                 </li>
                 <li class="nav-item active">
-                  <p><%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path, method: :post %></p>
+                  <p>
+                    <%= link_to guests_guest_sign_in_path, method: :post, class: 'text-light' do %>
+                      <i class="fa-solid fa-carrot"></i> ゲストログイン（閲覧用）
+                    <% end %>
+                  </p>
                 </li>
               </ul>
       <% end %>
             </div>
          </nav>
 
+
   <main style="background-color:#fffaf0;">
+    <p id="alert"><%= notice %><%= alert %></p>
+
+
     <%= yield %>
   </main>
 
   <footer>
-    <div class="container mt-5">
+    <div class="container">
       <div class="row">
         <div  class="mx-auto">
-          <div>Logo made by <a href="https://www.designevo.com/" title="Free Online Logo Maker">DesignEvo free logo creator</a></div>
+          <div>Logo made by <a href="https://www.designevo.com/" title="Free Online Logo Maker" class="logo-link">DesignEvo free logo creator</a></div>
         </div>
       </div>
     </div>

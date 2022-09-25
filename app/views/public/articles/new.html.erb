@@ -1,18 +1,27 @@
-  <div class="inner">
-    <h3 class="section-ttl">投稿してみよう</h3>
-      <%= form_with model: @article, url: '/articles', method: :post do |f| %>
+   <div class="container">
+    <div class="row">
+      <div class='col-md-3'>
+      　<%= render 'public/users/list', bookmark: @bookmarks, user: @user %>
+      　<%= render 'public/articles/index', tag: @tags %>
+      </div>
 
-        <label>タイトル</label>
-        <p><%= f.text_field :title, :size=>"60" %></p>
+      <div class='col-md-8 offset-md-1'>
+        <div class="inner">
+          <h4 class="section-ttl">投稿してみよう</h4>
+          <%= form_with model: @article, url: '/articles', method: :post do |f| %>
+            <label>タイトル</label>
+            <p><%= f.text_field :title, :size=>"60", placeholder:"例）タイトル名：著者" %></p>
 
-        <label>本文</label>
-        <p><%= f.text_area :content, :size=>"60" %></p>
+            <label>本文</label>
+            <p><%= f.text_area :content, :size=>"60", placeholder:"おすすめの本について自由にお書きください" %></p>
 
-        <label>タグ</label>
-        <p><%= f.text_field :tag_names, :size=>"60", placeholder:"例）おにぎり,和食が食べたくなる!" %></p>
+            <label>タグ</label>
+            <p><%= f.text_field :tag_names, :size=>"60", placeholder:"例）おにぎり,和食が食べたくなる!" %></p>
 
-        <%= f.submit '投稿する' %>
+            <%= f.submit '投稿する', class: "btn--radius" %>
 
-      <% end %>
+          <% end %>
+        </div>
+      </div>
 
   </div>

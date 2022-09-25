@@ -1,22 +1,7 @@
   <div class="container px-5 px-sm-0">
     <div class="row">
       <div class='col-md-3'>
-
-        <table class="table table-borderless">
-          <% @tags.each do |tag| %>
-            <tbody>
-              <tr>
-                <th>
-                  <% if tag.articles.count !=0 %>
-                    <td>
-                      <%= link_to "#{tag.tag_name} ( #{tag.articles.count} )", tag_path(tag) %>
-                    </td>
-                  <% end %>
-                </th>
-              </tr>
-            </tbody>
-          <% end %>
-        </table>
+        <%= render 'public/articles/index', tag: @tag %>
       </div>
 
       <div class='col-md-8 offset-md-1'>
@@ -31,13 +16,13 @@
                   <p></p>
                 </th>
                 <td>
-                   <%= link_to article_path(article.id) do %>
+                   <%= link_to article_path(article.id), class: "link" do %>
                       <%= article.title %>
                     <% end %>
                 </td>
                 <td><%= article.content %></td>
                 <td>
-                  <%= link_to "#{article.comments.count} コメント", article_path(article.id) %>
+                  <%= link_to "#{article.comments.count} コメント", article_path(article.id), class: "link" %>
                 </td>
               </tr>
               <tr>
