@@ -1,10 +1,15 @@
-<main>
-  <div class="container">
-    <div class="row">
-        <table class='table table-hover table-inverse'>
+<div class="container">
+  <div class="row">
+    <div class='col-md-3'>
+      <%= render 'public/users/list', bookmark: @bookmarks, user: @user %>
+      <%= render 'index', tag: @tags %>
+    </div>
+
+    <div class='col-md-8 offset-md-1'>
+      <table class='table'>
           <tr>
             <td>
-              <%= link_to user_path(@user.id) do %>
+              <%= link_to user_path(@user.id), class: "link" do %>
                 <%= image_tag @user.get_profile_image(100,100) %></br>
                 <%= @user.name %>
               <% end %>
@@ -17,43 +22,64 @@
             <td><%= @article.content %></td>
             <% if @article.user == current_user %>
               <td>
-                <%= link_to 'Edit', edit_article_path(@article.id), class: 'btn btn-success btn-sm' %>
+                <%= link_to '編集', edit_article_path(@article.id), class: 'btn btn btn--radius' %>
               </td>
               <td>
-                <%= link_to 'Destroy', article_path(@article), method: :delete, class:'btn btn-danger btn-sm', "data-confirm" => "本当に削除しますか？" %>
+                <%= link_to '削除', article_path(@article), method: :delete, class:'btn btn btn--radius', "data-confirm" => "本当に削除しますか？" %>
               </td>
             <% end %>
 
             <% if @article.bookmarked_by?(current_user) %>
-              <td><%= link_to "いいね♡を外す", article_bookmarks_path(@article), method: :delete %></td>
+              <td><%= link_to "お気に入りを外す", article_bookmarks_path(@article), method: :delete, class: "link" %></td>
              <% else %>
-              <td><%= link_to "いいね♡", article_bookmarks_path(@article), method: :post %></td>
+              <td><%= link_to "お気に入りに登録", article_bookmarks_path(@article), method: :post, class: "link" %></td>
             <% end %>
           </tr>
-        </table>
+      </table>
+        <div class="comments card-text">        
+          <h4 class="mt-3"><%= @article.comments.count %>件コメント</h4>
+          <% @article.comments.each do |comment| %>
+            <div class="media border mb-3">
+              <%= image_tag comment.user.get_profile_image(60,60), class:"bd-placeholder-img align-self-center mx-3";  %>
+              <div class="media-body ml-4 p-3">
+                <p><%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.body %></p>
+                <p><%= comment.user.name %>さん</p>
+                <% if comment.user == current_user %>
+                  <%= link_to "削除", article_comment_path(comment.article, comment), method: :delete, class: "link" %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        
+        <div class="inner">
+          <%= form_with model: [@article, @comment] do |f| %>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">コメントする</label>
+              <%= f.text_area :body, rows: '5' class: "form-control", placeholder: "コメントをここに" %>
+            </div>
+            <%= f.submit "送信する" %>
+          <% end %>
+        </div>
+    </div>
 
-      <% @article_tags.each do |tag| %>
-        <%= link_to tag.tag_name, tag_path(tag) %><%="(#{tag.articles.count})" %>
-      <% end %>
-
-      <div>
-        <p>コメント件数：<%= @article.comments.count %></p>
-        <% @article.comments.each do |comment| %>
-          <p><%= image_tag comment.user.get_profile_image(80,80) %></p>
-             @<%= comment.user.name %>さん
-             <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.body %>
-             <% if comment.user == current_user %>
-               <%= link_to "削除", article_comment_path(comment.article, comment), method: :delete %>
-             <% end %>
+          
+          
+          
+      <hr>
+      <div class="new-comment card-text">
+        <%= form_with(model:[@post_image, @post_comment]) do |f| %>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">コメントする</label>
+            <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+          </div>
+          <%= f.submit "送信する", class:"btn btn-lg btn-info mt-2 float-right" %>
         <% end %>
       </div>
-      <div>
-        <%= form_with model: [@article, @comment] do |f| %>
-          <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
-          <%= f.submit "送信する" %>
-        <% end %>
+    </div>
+          
       </div>
+    </div>
 
     </div>
   </div>
-</main>

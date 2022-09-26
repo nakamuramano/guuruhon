@@ -12,6 +12,7 @@ class Public::ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @comment = Comment.new
     @article_tags = @article.tags
+    @tags = Tag.all
   end
 
   def new

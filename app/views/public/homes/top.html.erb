@@ -1,4 +1,4 @@
-  <div class="container px-5 px-sm-0">
+  <div class="container">
     <div class="row">
       <div class='col-md-3'>
         <%= render 'public/articles/index', tag: @tag %>
@@ -10,9 +10,11 @@
             <tbody>
               <tr>
                 <th scope="row">
+
                   <%= link_to user_path(article.user.id) do %>
                      <%= image_tag article.user.get_profile_image(80,80) %>
                   <% end %>
+
                   <p></p>
                 </th>
                 <td>
