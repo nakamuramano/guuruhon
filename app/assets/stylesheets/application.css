@@ -220,7 +220,7 @@ li{
   margin-bottom: 30px;
 }
 
-.bookmarks_inner{
+.bookmarks_inner, .inner-user{
   width: 900px;
   margin: 0 auto;
 }
@@ -259,6 +259,10 @@ a.btn--radius {
   background-color: #f08080;
 }
 
+.image{
+  border-radius: 50%;
+}
+
 .link{
   color: #800000;
 }
@@ -270,7 +274,7 @@ a.btn--radius {
   padding-left: 180px;
 }
 
-.col-md-3, .col-md-8, .unsubscribe{
+.col-md-3, .col-md-8, .unsubscribe, .user-index{
   background-color: #fff;
   border-top: 3px solid #bc8f8f;
   border-bottom: 3px solid #bc8f8f;

@@ -1,35 +1,27 @@
-<main>
-  <div class="container">
+  <div class="container user-index">
     <div class="row">
-      <h4>Users</h4>
-      <table class="table">
-        <thead>
-          <tr>
-           <th scope="col">#</th>
-           <th scope="col">image</th>
-           <th scope="col">name</th>
-           <th scope="col">status</th>
-          </tr>
-        </thead>
-        <% @users.each do |user| %>
-          <tbody>
-            <tr>
-              <th scope="row"></th>
-              <td><%= image_tag user.get_profile_image(80,80) %></td>
-              <td>
-                <%= link_to admin_user_path(user.id) do %>
-                  <%= user.name %>
+      <div class="inner-user">
+        <h4 class="section-ttl">ユーザー一覧</h4>
+        <table class="table">
+          <% @users.each do |user| %>
+            <tbody>
+              <tr>
+                <th scope="row"></th>
+                <td><%= image_tag user.get_profile_image(80,80), class: "image" %></td>
+                <td>
+                  <%= link_to admin_user_path(user.id), class: "link" do %>
+                    <%= user.name %>
+                  <% end %>
+                </td>
+                <% if user.is_active? %>
+                  <td class="text-success">有効</td>
+                <% else %>
+                  <td class="text-secondary">退会</td>
                 <% end %>
-              </td>
-              <% if user.is_active? %>
-                <td class="text-success">valid</td>
-              <% else %>
-                <td class="text-secondary">unsubscribe</td>
-              <% end %>
-            </tr>
-          </tbody>
-        <% end %>
-      </table>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
     </div>
   </div>
-</main>
