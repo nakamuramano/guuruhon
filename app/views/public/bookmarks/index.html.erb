@@ -1,11 +1,18 @@
-<div class="bookmarks_inner">
-    <h5 class="section-ttl">お気に入り一覧</h5>
-        <table class="table table-striped">
+<div class="container">
+  <div class="row">
+    <div class='col-md-3'>
+      <%= render 'public/users/list', bookmark: @bookmarks, user: @user %>
+      <%= render 'public/articles/index', tag: @tags %>
+    </div>
+
+    <div class='col-md-8 offset-md-1'>
+      <div class="inner">
+        <h5 class="section-ttl">お気に入り一覧</h5>
+        <table class="table">
           <thead>
             <tr>
-              <th scope="col">user</th>
-              <th scope="col">title</th>
-              <th scope="col">content</th>
+              <th scope="col"><i class="fa-regular fa-user"></i> ユーザーネーム</th>
+              <th scope="col"><i class="fa-solid fa-book"></i> 本のタイトル</th>
             </tr>
           </thead>
           <% @bookmarks.each do |bookmark| %>
@@ -13,11 +20,10 @@
               <tr>
                 <td><%= bookmark.article.user.name %></td>
                 <td>
-                  <%= link_to article_path(bookmark.article) do %>
+                  <%= link_to article_path(bookmark.article), class: "link" do %>
                     <%= bookmark.article.title %>
                   <% end %>
                 </td>
-                <td><%= bookmark.article.content %></td>
               </tr>
             </tbody>
           <% end %>

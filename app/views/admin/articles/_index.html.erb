@@ -1,0 +1,10 @@
+<div class="tag-table">
+  <h6>タグから探す<i class="fa-solid fa-magnifying-glass"></i></h6>
+  <% @tags.each do |tag| %>
+    <ul>
+      <li>
+        <%= link_to "#{tag.tag_name} ( #{tag.articles.count} )", tag_path(tag), class: "link" %>
+      </li>
+    </ul>
+  <% end %>
+</div>
