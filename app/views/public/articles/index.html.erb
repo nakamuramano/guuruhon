@@ -12,7 +12,7 @@
               <tr>
                 <th>
                   <%= link_to user_path(article.user.id) do %>
-                     <%= image_tag article.user.get_profile_image(80,80) %>
+                     <%= image_tag article.user.get_profile_image(80,80), class: "image" %>
                   <% end %>
                   <p></p>
                 </th>

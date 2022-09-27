@@ -1,4 +1,6 @@
 class Public::ArticlesController < ApplicationController
+  before_action :correct_user, only: [:edit]
+
   def index
     @articles = Article.all
     @tag_list=Tag.all
@@ -8,11 +10,12 @@ class Public::ArticlesController < ApplicationController
   end
 
   def show
-    @user = Article.find(params[:id]).user
+    @user_id = Article.find(params[:id]).user
     @article = Article.find(params[:id])
     @comment = Comment.new
     @article_tags = @article.tags
     @tags = Tag.all
+    @user = current_user
   end
 
   def new
@@ -41,9 +44,11 @@ class Public::ArticlesController < ApplicationController
  # end
 
   def search
+    @tags = Tag.all
+    @user = current_user
     if params[:title].present?
       @articles = Article.where('title LIKE ?', "%#{params[:title]}%")
-      @content = params[:title]
+      @title = params[:title]
     else
       @articles = Article.all
     end
@@ -52,6 +57,8 @@ class Public::ArticlesController < ApplicationController
   def edit
     @article = Article.find(params[:id])
     @tag_list = @article.tags.pluck(:tag_name).join(",")
+    @tags = Tag.all
+    @user = current_user
   end
 
   def update
@@ -81,5 +88,12 @@ class Public::ArticlesController < ApplicationController
   def article_params
     params.require(:article).permit(:title, :content, :profile_image)
   end
+
+  def correct_user
+    @article = Article.find(params[:id])
+    @user = @article.user
+    redirect_to article_path unless @user == current_user
+  end
+
 
 end

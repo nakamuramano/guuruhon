@@ -182,7 +182,7 @@ header{
   padding-top: 40px;
 }
 
-.logo{
+.logo, h6{
   padding-top: 9px;
 }
 
@@ -274,10 +274,11 @@ a.btn--radius {
   padding-left: 180px;
 }
 
-.col-md-3, .col-md-8, .unsubscribe, .user-index{
+.col-md-3, .col-md-8, .unsubscribe, .user-index, .login{
   background-color: #fff;
   border-top: 3px solid #bc8f8f;
   border-bottom: 3px solid #bc8f8f;
+  padding-top: 10px;
 }
 
 .tag-table{

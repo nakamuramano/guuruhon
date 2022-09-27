@@ -9,35 +9,42 @@
       <table class='table'>
           <tr>
             <td>
-              <%= link_to user_path(@user.id), class: "link" do %>
-                <%= image_tag @user.get_profile_image(100,100) %></br>
-                <%= @user.name %>
+              <%= link_to user_path(@user_id.id), class: "link" do %>
+                <%= image_tag @user_id.get_profile_image(80,80), class: "image" %></br>
+                <%= @user_id.name %>
               <% end %>
             </td>
             <td> <%= @article.title %></td>
             <td><%= @article.content %></td>
-            <% if @article.user == current_user %>
-              <td>
-                <%= link_to '編集', edit_article_path(@article.id), class: 'btn btn btn--radius' %>
-              </td>
-              <td>
-                <%= link_to '削除', article_path(@article), method: :delete, class:'btn btn btn--radius', "data-confirm" => "本当に削除しますか？" %>
-              </td>
-            <% end %>
-
-            <% if @article.bookmarked_by?(current_user) %>
-              <td><%= link_to "お気に入りを外す", article_bookmarks_path(@article), method: :delete, class: "link" %></td>
-             <% else %>
-              <td><%= link_to "お気に入りに登録", article_bookmarks_path(@article), method: :post, class: "link" %></td>
-            <% end %>
           </tr>
         </table>
+
+        <% if @article.user == current_user %>
+          <%= link_to '投稿編集', edit_article_path(@article.id), class: 'btn btn btn--radius' %>
+          <%= link_to '投稿削除', article_path(@article), method: :delete, class:'btn btn btn--radius', "data-confirm" => "本当に削除しますか？" %>
+        <% end %>
+
+        <% if @article.bookmarked_by?(current_user) %>
+          <%= link_to article_bookmarks_path(@article), method: :delete, class: "link" do %>
+            お気に入りを外す<i class="fa-solid fa-star"></i>
+          <% end %>
+        <% else %>
+          <%= link_to article_bookmarks_path(@article), method: :post, class: "link" do %>
+            お気に入り登録<i class="fa-regular fa-star"></i>
+          <% end %>
+        <% end %>
+
+        <h6>#タグ</h6>
+        <% @article_tags.each do |tag| %>
+          <%= link_to tag.tag_name,search_tag_path(tag_id: tag.id), class: "link" %><%="(#{tag.articles.count})" %>
+        <% end %>
+
         <div class="comments card-text">
-          <h5 class="mt-3"><%= @article.comments.count %>件コメント</h5>
+          <h6 class="mt-3"><%= @article.comments.count %>件コメント</h6>
           <% @article.comments.each do |comment| %>
             <div class="media border mb-3">
-              <%= image_tag comment.user.get_profile_image(60,60), class:"bd-placeholder-img align-self-center mx-3";  %>
-              <div class="media-body ml-4 p-3">
+              <%= image_tag comment.user.get_profile_image(60,60), class:"bd-placeholder-img align-self-center mx-3 image";  %>
+              <div class="media-body ml-4">
                 <p><%= comment.user.name %><%= comment.created_at.strftime('%Y/%m/%d') %></p>
                 <p><%= comment.body %></p>
                 <% if comment.user == current_user %>
@@ -50,11 +57,9 @@
 
         <div class="inner">
           <%= form_with model: [@article, @comment] do |f| %>
-            <div class="form-group">
-              <div for="exampleFormControlTextarea1">コメントする</div>
-              <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
-            </div>
-            <%= f.submit "送信する" %>
+              <div>コメントする</div>
+              <%= f.text_area :body, rows: '4', placeholder: "コメントをここに", :size=>"72" %>
+            <%= f.submit "送信する", class: "btn--radius" %>
           <% end %>
         </div>
     </div>

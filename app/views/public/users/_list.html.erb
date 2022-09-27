@@ -1,5 +1,5 @@
 
-      <%= image_tag @user.get_profile_image(80,80) %>
+      <%= image_tag @user.get_profile_image(80,80), class: "image" %>
       <table class="table">
         <tbody>
           <tr>
@@ -9,7 +9,10 @@
             <td><%= @user.email %></td>
           </tr>
           <tr>
-            <td><%=link_to "お気に入り", bookmarks_path(@bookmarks), class: "link" %></td>
+            <td><%=link_to bookmarks_path(@bookmarks), class: "link" do %>
+                  お気に入り<i class="fa-solid fa-star"></i>
+                <% end %>
+            </td>
           </tr>
           <tr>
             <td>

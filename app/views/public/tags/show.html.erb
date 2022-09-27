@@ -13,7 +13,7 @@
               <tr>
                 <th>
                   <%= link_to user_path(article.user.id) do %>
-                     <%= image_tag article.user.get_profile_image(80,80) %>
+                     <%= image_tag article.user.get_profile_image(80,80), class: "image" %>
                   <% end %>
                   <p></p>
                 </th>
@@ -22,7 +22,6 @@
                   <%= link_to "#{article.comments.count} コメント", article_path(article.id), class: "link" %>
                 </td>
               </tr>
-              <tr>
             </tbody>
           <% end %>
         </table>
