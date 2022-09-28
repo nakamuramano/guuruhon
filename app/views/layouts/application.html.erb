@@ -24,13 +24,14 @@
               美味しそうでぐぅ〜とお腹が鳴ってしまうような料理や食べ物が出てくる</br>
               おすすめ小説・エッセイなどを閲覧、投稿などできるサイトです。</br>
             </div>
-
-            <div class="header_search">
-              <%= form_with url: search_articles_path, local: true, method: :get do |search| %>
-                <%= search.text_field :title, placeholder:"本のタイトル" %>
-                <%= search.submit "検索", class: "btn--radius" %>
-              <% end %>
-            </div>
+            <% if user_signed_in? %>
+              <div class="header_search">
+                <%= form_with url: search_articles_path, local: true, method: :get do |search| %>
+                  <%= search.text_field :title, placeholder:"本のタイトル" %>
+                  <%= search.submit "検索", class: "btn--radius" %>
+                <% end %>
+              </div>
+            <% end %>
 
           </div>
         </header>

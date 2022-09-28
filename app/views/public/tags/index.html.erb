@@ -7,12 +7,10 @@
     <div class='col-md-8 offset-md-1'>
       <div class="inner">
         <h4 class="section-ttl">タグ一覧</h4>
-            <ul class="flex">
 
           <% @tags.each do |tag| %>
-              <li><%= link_to "#{tag.tag_name} ( #{tag.articles.count} )", tag_path(tag), class: "btn btn btn--radius" %></li>
+              <%= link_to "#{tag.tag_name} ( #{tag.articles.count} )", tag_path(tag), class: "btn btn btn--radius" %>
           <% end %>
-          </ul>
 
       </div>
     </div>

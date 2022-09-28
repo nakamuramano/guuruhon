@@ -4,7 +4,7 @@ class Public::ArticlesController < ApplicationController
   def index
     @articles = Article.all
     @tag_list=Tag.all
-    @tags = Tag.all
+    @tags = Tag.order(created_at: :desc).limit(6)
     @user = current_user
     @bookmarks = Bookmark.where(user_id: current_user.id)
   end
@@ -14,7 +14,7 @@ class Public::ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @comment = Comment.new
     @article_tags = @article.tags
-    @tags = Tag.all
+    @tags = Tag.order(created_at: :desc).limit(6)
     @user = current_user
   end
 
@@ -22,7 +22,7 @@ class Public::ArticlesController < ApplicationController
     @article = Article.new
     @user = current_user
     @bookmarks = Bookmark.where(user_id: current_user.id)
-    @tags = Tag.all
+    @tags = Tag.order(created_at: :desc).limit(6)
   end
 
   def create
@@ -44,7 +44,7 @@ class Public::ArticlesController < ApplicationController
  # end
 
   def search
-    @tags = Tag.all
+    @tags = Tag.order(created_at: :desc).limit(6)
     @user = current_user
     if params[:title].present?
       @articles = Article.where('title LIKE ?', "%#{params[:title]}%")
@@ -57,7 +57,7 @@ class Public::ArticlesController < ApplicationController
   def edit
     @article = Article.find(params[:id])
     @tag_list = @article.tags.pluck(:tag_name).join(",")
-    @tags = Tag.all
+    @tags = Tag.order(created_at: :desc).limit(6)
     @user = current_user
   end
 

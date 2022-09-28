@@ -4,7 +4,7 @@ class Public::BookmarksController < ApplicationController
 
   def index
     @bookmarks = Bookmark.where(user_id: current_user.id)
-    @tags = Tag.all
+    @tags = Tag.order(created_at: :desc).limit(6)    
     @user = current_user
   end
 
