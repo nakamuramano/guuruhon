@@ -1,5 +1,7 @@
 
-      <%= image_tag @user.get_profile_image(80,80), class: "image" %>
+      <%= link_to user_path(@user.id) do %>
+        <%= image_tag @user.get_profile_image(80,80), class: "image" %>
+      <% end %>
       <table class="table">
         <tbody>
           <tr>
