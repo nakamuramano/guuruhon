@@ -5,13 +5,12 @@ class Admin::TagsController < ApplicationController
 
   def show
     @tag = Tag.find(params[:id])
+    @articles = @tag.articles.all
   end
-
-
 
   def destroy
     Tag.find(params[:id]).destroy()
-    redirect_to tags_path
+    redirect_to admin_tags_path
   end
 
 

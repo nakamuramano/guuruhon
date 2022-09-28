@@ -1,4 +1,4 @@
-<%= link_to user_path(@user.id) do %>
+<%= link_to admin_user_path(@user.id) do %>
   <%= image_tag @user.get_profile_image(80,80), class: "image" %>
 <% end %>
 <table class="table">
@@ -8,12 +8,6 @@
     </tr>
     <tr>
       <td><%= @user.email %></td>
-    </tr>
-    <tr>
-      <td><%=link_to admin_bookmarks_path(@bookmarks), class: "link" do %>
-            お気に入り<i class="fa-solid fa-star"></i>
-          <% end %>
-      </td>
     </tr>
   </tbody>
 </table>

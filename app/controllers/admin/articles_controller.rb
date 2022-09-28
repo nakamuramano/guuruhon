@@ -43,9 +43,10 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def search
-    if params[:content].present?
-      @articles = Article.where('content LIKE ?', "%#{params[:content]}%")
-      @content = params[:content]
+    @tags = Tag.order(created_at: :desc).limit(6)
+    if params[:title].present?
+      @articles = Article.where('title LIKE ?', "%#{params[:title]}%")
+      @title = params[:title]
     else
       @articles = Article.all
     end

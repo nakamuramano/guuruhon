@@ -2,6 +2,8 @@ class Admin::BookmarksController < ApplicationController
 
   def index
     @tags = Tag.order(created_at: :desc).limit(6)
+    @bookmarks = @user.bookmarks
+    @tags = Tag.order(created_at: :desc).limit(6)
   end
 
   def create

@@ -1,4 +1,8 @@
 <div class="tag-table">
+  <%= form_with url: search_admin_articles_path, local: true, method: :get do |search| %>
+    <%= search.text_field :title, :size=>"19", placeholder:"本のタイトル" %>
+    <%= search.submit "検索", class: "btn--radius" %>
+  <% end %>
   <h6>
     全てのタグから探す
     <%= link_to admin_tags_path, class: "link" do %>

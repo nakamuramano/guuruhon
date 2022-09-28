@@ -13,7 +13,6 @@ class Admin::UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @user = Article.find(params[:id]).user
     @tags = Tag.order(created_at: :desc).limit(6)
     @bookmarks = @user.bookmarks
   end
@@ -23,6 +22,17 @@ class Admin::UsersController < ApplicationController
     @user.update(user_params)
     redirect_to admin_user_path(@user.id)
   end
+
+    def search
+    @tags = Tag.order(created_at: :desc).limit(6)
+    if params[:content].present?
+      @articles = Article.where('content LIKE ?', "%#{params[:content]}%")
+      @content = params[:content]
+    else
+      @articles = Article.all
+    end
+  end
+
 
   def withdrawal
     @user = User.find(params[:id])

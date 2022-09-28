@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class='col-md-3'>
+      <%= render 'index', tag: @tags %>
+    </div>
+
+    <div class='col-md-8 offset-md-1'>
+      <div class="inner">
+        <h4 class="section-ttl">検索結果"<%= @title %>"</h4>
+        <table class="table">
+          <% @articles.each do |article| %>
+            <tbody>
+              <tr>
+                <td>
+                  <%= link_to admin_article_path(article.id), class: "link" do %>
+                    <i class="fa-solid fa-arrow-right"></i> <%= article.title %>
+                  <% end %>
+                </td>
+                <td><%= (article.comments.count) %>コメント</td>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

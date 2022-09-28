@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class='col-md-3'>
-      <%= render 'public/users/list', bookmark: @bookmarks, user: @user %>
+      <%= render 'admin/users/list', bookmark: @bookmarks, user: @user %>
       <%= render 'index', tag: @tags %>
     </div>
 
@@ -18,7 +18,7 @@
             <label for="book_opinion">Opinion</label></br>
             <%= f.text_area :content, class:"form-control" %>
           </div>
-          <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
+          <%= f.label"タグ (、で区切ると複数タグ登録できます)" %>
           <%= f.text_field :tag_name,value: @tag_list,class:"form-control"%>
 
           <div class="actions" style="margin:20px 0;">
