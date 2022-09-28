@@ -1,4 +1,5 @@
 class Public::TagsController < ApplicationController
+ before_action :authenticate_user!, except: [:top, :new_guest]
 
   def index
     @tags = Tag.all

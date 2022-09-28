@@ -2,7 +2,7 @@ class Admin::ArticlesController < ApplicationController
   def index
     @articles = Article.all
     @tag_list=Tag.all
-    @tags = Tag.all
+    @tags = Tag.order(created_at: :desc).limit(6)
   end
 
   def show
@@ -10,19 +10,29 @@ class Admin::ArticlesController < ApplicationController
     @user = Article.find(params[:id]).user
     @comment = Comment.new
     @article_tags = @article.tags
+    @tags = Tag.order(created_at: :desc).limit(6)
   end
 
   def edit
     @article = Article.find(params[:id])
+    @user = Article.find(params[:id]).user
+    @tags = Tag.order(created_at: :desc).limit(6)
+    @tag_list = @article.tags.pluck(:tag_name).join("、")
+
   end
 
   def update
-    @article = Article.find(params[:id])
+      @article = Article.find(params[:id])
+      tag_list = params[:article][:tag_name].split("、")
     if @article.update(article_params)
-       flash[:notice] = "You have updated book successfully."
+       @old_relations = ArticleTag.where(article_id: @article.id)
+       @old_relations.each do |relation|
+         relation.delete
+       end
+       @article.save_tag(tag_list)
        redirect_to admin_article_path(@article.id)
     else
-       render :edit
+       render:edit
     end
   end
 

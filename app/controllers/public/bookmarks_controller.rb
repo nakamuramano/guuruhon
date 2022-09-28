@@ -1,6 +1,6 @@
 class Public::BookmarksController < ApplicationController
-
-  before_action :authenticate_user!
+  
+before_action :authenticate_user!, except: [:top, :new_guest]
 
   def index
     @bookmarks = Bookmark.where(user_id: current_user.id)

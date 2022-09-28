@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   devise_for :users,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -18,7 +17,6 @@ Rails.application.routes.draw do
      resource :bookmarks, only: [:create, :destroy]
       collection do
         get 'search'
-
       end
       resources :comments, only: [:create, :destroy]
     end
@@ -29,13 +27,20 @@ Rails.application.routes.draw do
   end
 
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
-  sessions: "admin/sessions"
+  sessions: "admin/sessions",
   }
 
    namespace :admin do
 
+   get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+   patch 'users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+   get "search_tag" => "articles#search_tag"
+
    resources :articles do
        resource :bookmarks, only: [:create, :destroy]
+        collection do
+          get 'search'
+        end
        resources :comments, only: [:create, :destroy]
      end
    resources :tags

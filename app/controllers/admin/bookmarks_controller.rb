@@ -1,5 +1,9 @@
 class Admin::BookmarksController < ApplicationController
 
+  def index
+    @tags = Tag.order(created_at: :desc).limit(6)
+  end
+
   def create
     @article = Article.find(params[:article_id])
     bookmark = @article.bookmarks.new(user_id)

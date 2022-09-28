@@ -1,7 +1,15 @@
-  <div class="container">
-    <div class="row">
-      <h4>Article detail</h4>
-        <%= form_with model: @article, url: admin_article_path, method: :patch do |f| %>
+
+<div class="container">
+  <div class="row">
+    <div class='col-md-3'>
+      <%= render 'public/users/list', bookmark: @bookmarks, user: @user %>
+      <%= render 'index', tag: @tags %>
+    </div>
+
+    <div class='col-md-8 offset-md-1'>
+      <div class="inner">
+        <h4 class="section-ttl">投稿を編集</h4>
+          <%= form_with model: @article, url: admin_article_path, method: :patch do |f| %>
           <div class="form-group">
             <label for="book_title">Title</label></br>
             <%= f.text_field :title, class:"form-control" %>
@@ -10,13 +18,17 @@
             <label for="book_opinion">Opinion</label></br>
             <%= f.text_area :content, class:"form-control" %>
           </div>
-          <div class="form-group">
-            <%= f.submit "Update", class: "btn btn-success" %>
+          <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
+          <%= f.text_field :tag_name,value: @tag_list,class:"form-control"%>
+
+          <div class="actions" style="margin:20px 0;">
+            <%= f.submit "保存", class: "btn--radius" %>
           </div>
         <% end %>
-  		  <%= link_to "Show", admin_article_path(@article.id) %> |
-  		  <%= link_to "Back", admin_articles_path %>
+
+        <%= link_to "Show", admin_article_path(@article.id), class: "link" %> |
+  		  <%= link_to "Back", admin_articles_path, class: "link" %>
   		</div>
-    </div>
-    </div>
+  	</div>
   </div>
+</div>

@@ -17,7 +17,7 @@
 
         <header>
           <div class="header_inner">
-            <%= link_to root_path, class: "logo" do %>
+            <%= link_to (admin_signed_in? ? admin_articles_path : root_path ), class: "logo" do %>
               <%= image_tag 'logo.jpg', size: "100x100" %>
             <% end %>
             <div class="header_description">

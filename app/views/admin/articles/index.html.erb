@@ -11,17 +11,17 @@
             <tr>
               <th scope="row">
                 <%= link_to admin_user_path(article.user.id) do %>
-                   <%= image_tag article.user.get_profile_image(100,100), class: "image" %>
+                   <%= image_tag article.user.get_profile_image(80,80), class: "image" %>
                 <% end %>
               </th>
               <td valign="bottom">
-                 <%= link_to admin_article_path(article.id) do %>
+                 <%= link_to admin_article_path(article.id), class: "link" do %>
                     <%= article.title %>
                   <% end %>
               </td>
               <td valign="bottom"><%= article.content %></td>
               <td valign="bottom">
-                <%= link_to "#{article.comments.count} コメント"%>
+                <%= link_to "#{article.comments.count} コメント", admin_article_path(article.id), class: "link"%>
               </td>
             </tr>
             <tr>
@@ -31,3 +31,5 @@
 
     </div>
   </div>
+
+

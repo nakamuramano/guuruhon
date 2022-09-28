@@ -1,8 +1,10 @@
 <div class="tag-table">
-  全てのタグから探す
-  <%= link_to tags_path, class: "link" do %>
-    <i class="fa-solid fa-magnifying-glass"></i>
-  <% end %>
+  <h6>
+    全てのタグから探す
+    <%= link_to tags_path, class: "link" do %>
+      <i class="fa-solid fa-magnifying-glass"></i>
+    <% end %>
+  </h6>
   <% @tags.each do |tag| %>
     <ul>
       <li>

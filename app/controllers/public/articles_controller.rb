@@ -1,4 +1,5 @@
 class Public::ArticlesController < ApplicationController
+  before_action :authenticate_user!, except: [:top, :new_guest]
   before_action :correct_user, only: [:edit]
 
   def index
@@ -28,7 +29,7 @@ class Public::ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     @article.user_id = current_user.id
-    tag_list = params[:article][:tag_names].split(",")
+    tag_list = params[:article][:tag_names].split("、")
     if @article.save
      @article.save_tag(tag_list)
       redirect_to articles_path(@article),notice:'投稿完了しました:)'
@@ -56,7 +57,7 @@ class Public::ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
-    @tag_list = @article.tags.pluck(:tag_name).join(",")
+    @tag_list = @article.tags.pluck(:tag_name).join("、")
     @tags = Tag.order(created_at: :desc).limit(6)
     @user = current_user
   end

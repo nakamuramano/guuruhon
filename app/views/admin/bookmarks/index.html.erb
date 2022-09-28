@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class='col-md-3'>
+      <%= render 'public/users/list', bookmark: @bookmarks, user: @user %>
+      <%= render 'public/articles/index', tag: @tags %>
+    </div>
+
+    <div class='col-md-8 offset-md-1'>
+      <div class="inner">
+        <h5 class="section-ttl">お気に入り一覧</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"><i class="fa-regular fa-user"></i> ユーザーネーム</th>
+              <th scope="col"><i class="fa-solid fa-book"></i> タイトル</th>
+            </tr>
+          </thead>
+          <% @bookmarks.each do |bookmark| %>
+            <tbody>
+              <tr>
+                <td><%= bookmark.article.user.name %></td>
+                <td>
+                  <%= link_to admin_article_path(bookmark.article), class: "link" do %>
+                    <%= bookmark.article.title %>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+  </div>
