@@ -1,36 +1,9 @@
-<main>
-  <div class="container">
-    <div class="row">
-      <h1>Tags#show</h1>
-      <p>Find me in app/views/tags/show.html.erb</p>
-
-      <h2>Actions --></h2>
-      <%= link_to 'Tags List', tags_path %>
-      <%= link_to 'Delete', tag_path(@tag), method: :delete, data: {confirm: '関連づいた記事のタグが空になりますがタグを削除しますか？'} %>
-
-      <h2>Tag --></h2>
-
-      <h3><%= @tag.tag_name %></h3>
-
-      <ul>
-        <% @tag.articles.each do |article| %>
-          <li>
-            <%= link_to article.title, admin_article_path(article) %>
-          </li>
-        <% end %>
-      </ul>
-
-
-    </div>
-  </div>
-</main>
-
-<div class="container">
+<div class="container tag_show">
   <div class="row">
-    <div class="inner">
+    <div class="inner_tag">
       <h4 class="section-ttl">
-        タグが<%= @tag.tag_name%>の投稿一覧
-        <%= link_to 'Delete', admin_tag_path(@tag), method: :delete, data: {confirm: '関連づいた記事のタグが空になりますがタグを削除しますか？'} %>
+        タグが"<%= @tag.tag_name%>"の投稿一覧
+        <%= link_to 'タグ削除', admin_tag_path(@tag), method: :delete, data: {confirm: '関連づいた記事のタグが空になりますがタグを削除しますか？'}, class: "btn btn btn--radius" %>
       </h4>
         <table class="table">
           <% @tag.articles.each do |article| %>
@@ -50,7 +23,6 @@
             </tbody>
           <% end %>
         </table>
-
         <div><%= link_to '#タグ一覧', admin_tags_path, class: "link" %></div>
       </div>
     </div>

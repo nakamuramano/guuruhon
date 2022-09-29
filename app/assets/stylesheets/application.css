@@ -214,7 +214,7 @@ li{
 
 }
 
-.inner-unsubscribe{
+.inner-unsubscribe, .inner_tag{
   width: 600px;
   margin: 0 auto;
   margin-bottom: 30px;
@@ -275,7 +275,7 @@ a.btn--radius {
   padding-left: 180px;
 }
 
-.col-md-3, .col-md-8, .unsubscribe, .user-index, .login{
+.col-md-3, .col-md-8, .unsubscribe, .user-index, .login, .tag_show{
   background-color: #fff;
   border-top: 3px solid #bc8f8f;
   border-bottom: 3px solid #bc8f8f;

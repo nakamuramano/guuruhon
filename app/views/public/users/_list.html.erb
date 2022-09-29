@@ -11,9 +11,10 @@
             <td><%= @user.email %></td>
           </tr>
           <tr>
-            <td><%=link_to bookmarks_path(@bookmarks), class: "link" do %>
-                  お気に入り<i class="fa-solid fa-star"></i>
-                <% end %>
+            <td>
+              <%=link_to bookmarks_path(@bookmarks), class: "link" do %>
+                お気に入り<i class="fa-solid fa-star"></i>
+              <% end %>
             </td>
           </tr>
           <tr>

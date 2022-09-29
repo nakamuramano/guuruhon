@@ -1,54 +1,41 @@
-<main>
-  <div class="container">
-    <div class="row">
-      <h4>User info</h4>
-      <%= image_tag @user.get_profile_image(80,80) %>
-       <table class="table table-borderless">
+<div class="container">
+  <div class="row">
+    <div class='col-md-3'>
+      <%= image_tag @user.get_profile_image(80,80), class: "image" %>
+      <table class="table">
         <tbody>
           <tr>
-            <td width="240">User ID</td>
-            <td><%= @user.id %></td>
+            <td>ID: <%= @user.id %></td>
           </tr>
           <tr>
-            <td>Name</td>
             <td><%= @user.name %></td>
           </tr>
           <tr>
-            <td>Email</td>
             <td><%= @user.email%></td>
           </tr>
           <tr>
-            <td>status</td>
             <% if @user.is_active? %>
-              <td class="text-success">valid</td>
+              <td class="text-success">有効</td>
             <% else %>
-              <td class="text-secondary">unsubscribe</td>
+              <td class="text-secondary">退会</td>
             <% end %>
           </tr>
           <tr>
-            <td><%= link_to "Edit", edit_admin_user_path %></td>
+            <td><%= link_to "編集", edit_admin_user_path, class: "link" %></td>
           </tr>
         </tbody>
       </table>
-
-      <h4>article</h4>
-        <table class='table table-hover table-inverse'>
-          <thead>
-            <tr>
-             <th></th>
-             <th>Title</th>
-             <th>Opinion</th>
-             <th colspan="3"></th>
-            </tr>
-          </thead>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <div class="inner">
+        <h5 class="section-ttl"><%= @user.name %>さんの投稿一覧</h5>
+        <table class='table'>
           <tbody>
             <% @articles.each do |article| %>
               <tr>
                 <td>
-                </td>
-                <td>
-                  <%= link_to admin_article_path(article.id) do %>
-                    <%= article.title %>
+                  <%= link_to admin_article_path(article.id), class: "link" do %>
+                     <i class="fa-solid fa-book-open"></i> <%= article.title %>
                   <% end %>
                 </td>
                 <td><%= article.content %></td>
@@ -57,23 +44,14 @@
           </tbody>
         </table>
 
-
-
-        <h5>ブックマーク一覧</h5>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">user</th>
-              <th scope="col">title</th>
-              <th scope="col">content</th>
-            </tr>
-          </thead>
+        <h5 class="section-ttl">お気に入り<i class="fa-solid fa-star"></i>一覧</h5>
+        <table class="table">
           <% @bookmarks.each do |bookmark| %>
             <tbody>
               <tr>
                 <td><%= bookmark.article.user.name %></td>
                 <td>
-                  <%= link_to admin_article_path(bookmark.article) do %>
+                <%= link_to admin_article_path(bookmark.article), class: "link" do %>
                     <%= bookmark.article.title %>
                   <% end %>
                 </td>
@@ -82,35 +60,6 @@
             </tbody>
           <% end %>
         </table>
-
-
-
-        <thead>
-          <tr>
-            <th>投稿者名</th>
-            <th>タイトル</th>
-            <th>本文</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @bookmarks.each do |bookmark| %>
-            <tr>
-              <td><%= bookmark.article.user.name %></td>
-              <td>
-                <%= link_to article_path(bookmark.article) do %>
-                  <%= bookmark.article.title %>
-                <% end %>
-              </td>
-              <td><%= bookmark.article.content %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
+      </div>
     </div>
   </div>
-</main>
-
-    </div>
-  </div>
-</main>
