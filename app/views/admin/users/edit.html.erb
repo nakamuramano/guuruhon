@@ -1,41 +1,41 @@
-<main>
-  <div class="container">
+  <div class="container user_edit">
     <div class="row">
-
-      <h4>User info </h4>
-
-      <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
-        <%= f.file_field :profile_image, accept: "image/*" %>
-        <table class="table table-borderless">
-          <tbody>
-            <tr>
-              <td width="240">User ID</td>
-              <td><%= @user.id %></td>
-            </tr>
-            <tr>
-              <td>Name</td>
-              <td><%= f.text_field :name %></td>
-            </tr>
-            <tr>
-              <td>Email</td>
-              <td><%= f.text_field :email%></td>
-            </tr>
-            <tr>
-              <td>status</td>
-              <% if @user.is_active? %>
-                <td class="text-success">valid</td>
-              <% else %>
-                <td class="text-secondary">unsubscribe</td>
-              <% end %>
-            </tr>
-            <tr>
-              <td></td>
-              <td><%= f.submit "save" %></td>
-            </tr>
-          </tbody>
-        </table>
-      <% end %>
-
+      <div class="inner_user">
+        <h4 class="section-ttl">プロフィール編集</h4>
+        <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
+          <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <td></td>
+                <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>
+              </tr>
+              <tr>
+                <td>あなたの ID</td>
+                <td><%= @user.id %></td>
+              </tr>
+              <tr>
+                <td>ユーザーネーム</td>
+                <td><%= f.text_field :name, :size=>"30" %></td>
+              </tr>
+              <tr>
+                <td>メールアドレス</td>
+                <td><%= f.text_field :email, :size=>"30" %></td>
+              </tr>
+              <tr>
+                <td></td>
+                <% if @user.is_active? %>
+                  <td class="text-success">有効</td>
+                <% else %>
+                  <td class="text-secondary">退会</td>
+                <% end %>
+              </tr>
+              <tr>
+                <td></td>
+                <td><%= f.submit "登録する", class: "btn--radius" %></td>
+              </tr>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
     </div>
   </div>
-</main>

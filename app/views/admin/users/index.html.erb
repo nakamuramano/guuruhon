@@ -1,12 +1,11 @@
   <div class="container user-index">
     <div class="row">
-      <div class="inner-user">
+      <div class="inner_user_index">
         <h4 class="section-ttl">ユーザー一覧</h4>
         <table class="table">
           <% @users.each do |user| %>
             <tbody>
               <tr>
-                <th scope="row"></th>
                 <td><%= image_tag user.get_profile_image(80,80), class: "image" %></td>
                 <td>
                   <%= link_to admin_user_path(user.id), class: "link" do %>

@@ -26,6 +26,8 @@
           </tr>
         </tbody>
       </table>
+            <% if @user == current_user %>
               <%= link_to "編集する", edit_user_path(@user.id), class: "btn btn btn--radius" %>
               <%= link_to "退会する", unsubscribe_path(@user.id), class: "btn btn btn--radius" %>
+            <% end %>
 

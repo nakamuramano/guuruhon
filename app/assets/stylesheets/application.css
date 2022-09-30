@@ -214,15 +214,16 @@ li{
 
 }
 
-.inner-unsubscribe, .inner_tag{
+.inner-unsubscribe, .inner_tag, .inner_user{
   width: 600px;
   margin: 0 auto;
   margin-bottom: 30px;
 }
 
-.bookmarks_inner, .inner-user{
+.bookmarks_inner, .inner_user_index, .inner_tag_index{
   width: 900px;
   margin: 0 auto;
+  margin-bottom: 30px;
 }
 
 
@@ -239,7 +240,7 @@ nav{
   height: 60px;
  }
 
- p {
+ p, .tag_delete{
   padding: 10px 20px 10px 10px;
   }
 
@@ -275,7 +276,8 @@ a.btn--radius {
   padding-left: 180px;
 }
 
-.col-md-3, .col-md-8, .unsubscribe, .user-index, .login, .tag_show{
+.col-md-3, .col-md-8, .unsubscribe, .user-index, .login,
+.tag_show, .user_edit, .tag_index{
   background-color: #fff;
   border-top: 3px solid #bc8f8f;
   border-bottom: 3px solid #bc8f8f;
@@ -287,3 +289,24 @@ a.btn--radius {
   padding: 20px 30px 0px 5px;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  background-color: #fffaf0;
+}
+
+.page a,
+.next a,
+.last a,
+.first a,
+.prev a {
+  color: #800000;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+
+.current {
+  font-weight: bold;
+}

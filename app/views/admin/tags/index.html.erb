@@ -1,21 +1,11 @@
-<main>
-  <div class="container">
-    <div class="row">
-      <h1>Tags#index</h1>
-      <p>Find me in app/views/tags/index.html.erb</p>
 
-      <h2>Actions --></h2>
-      <%= link_to 'Top', root_path %>
-
-      <h2>Tags --></h2>
-        <ul>
-          <% @tags.each do |tag| %>
-            <li>
-              <%= link_to "#{tag.tag_name} ( Posts: #{tag.articles.count} )", admin_tag_path(tag) %>
-            </li>
-          <% end %>
-        </ul>
-
+<div class="container tag_index">
+  <div class="row">
+    <div class="inner_tag_index">
+      <h4 class="section-ttl">タグ一覧</h4>
+      <% @tags.each do |tag| %>
+        <%= link_to "#{tag.tag_name} ( #{tag.articles.count} )", admin_tag_path(tag), class: "btn btn btn--radius" %>
+      <% end %>
     </div>
   </div>
-</main>
+</div>

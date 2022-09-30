@@ -7,14 +7,14 @@
       </div>
       <div class='col-md-8 offset-md-1'>
         <div class="inner">
-        <h5 class="section-ttl">あなたの投稿一覧</h5>
+          <h5 class="section-ttl"><%= @user.name %>さんの投稿一覧</h5>
           <table class='table table-hover table-inverse'>
             <tbody>
               <% @articles.each do |article| %>
                 <tr>
                   <td>
                     <%= link_to article_path(article.id), class: "link" do %>
-                       <i class="fa-solid fa-book-open"></i> <%= article.title %>
+                      <i class="fa-solid fa-book-open"></i> <%= article.title %>
                     <% end %>
                   </td>
                   <td><%= article.content %></td>
@@ -22,7 +22,8 @@
               <% end %>
             </tbody>
           </table>
-          </div>
         </div>
+      </div>
     </div>
+    <div class="paginate"><%= paginate @articles %></div>
   </div>

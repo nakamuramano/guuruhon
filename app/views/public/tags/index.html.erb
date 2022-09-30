@@ -7,13 +7,11 @@
     <div class='col-md-8 offset-md-1'>
       <div class="inner">
         <h4 class="section-ttl">タグ一覧</h4>
-
           <% @tags.each do |tag| %>
               <%= link_to "#{tag.tag_name} ( #{tag.articles.count} )", tag_path(tag), class: "btn btn btn--radius" %>
           <% end %>
-
       </div>
     </div>
-
   </div>
+  <div class="paginate"><%= paginate @tags %></div>
 </div>

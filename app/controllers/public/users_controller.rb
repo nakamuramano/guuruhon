@@ -4,14 +4,14 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @articles = @user.articles
-    @tags = Tag.order(created_at: :desc).limit(6)    
+    @articles = @user.articles.page(params[:page]).per(10)
+    @tags = Tag.order(created_at: :desc).limit(6)
     @bookmarks = Bookmark.where(user_id: current_user.id)
   end
 
   def edit
     @user = User.find(params[:id])
-    @tags = Tag.order(created_at: :desc).limit(6)    
+    @tags = Tag.order(created_at: :desc).limit(6)
   end
 
   def update

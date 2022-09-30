@@ -3,7 +3,9 @@
     <div class="inner_tag">
       <h4 class="section-ttl">
         タグが"<%= @tag.tag_name%>"の投稿一覧
-        <%= link_to 'タグ削除', admin_tag_path(@tag), method: :delete, data: {confirm: '関連づいた記事のタグが空になりますがタグを削除しますか？'}, class: "btn btn btn--radius" %>
+        <div class="tag_delete">
+          <%= link_to 'タグ削除', admin_tag_path(@tag), method: :delete, data: {confirm: '関連づいた記事のタグが空になりますがタグを削除しますか？'}, class: "btn btn btn--radius" %>
+        </div>
       </h4>
         <table class="table">
           <% @tag.articles.each do |article| %>
