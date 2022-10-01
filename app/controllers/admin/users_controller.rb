@@ -1,12 +1,12 @@
 class Admin::UsersController < ApplicationController
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(5)
   end
 
   def show
     @user = User.find(params[:id])
-    @articles = @user.articles
+    @articles = @user.articles.page(params[:page]).per(10)
     @comment = Comment.new
     @bookmarks = @user.bookmarks
   end
@@ -23,7 +23,7 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_user_path(@user.id)
   end
 
-    def search
+  def search
     @tags = Tag.order(created_at: :desc).limit(6)
     if params[:content].present?
       @articles = Article.where('content LIKE ?', "%#{params[:content]}%")

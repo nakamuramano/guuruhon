@@ -5,8 +5,8 @@
       </div>
 
       <div class='col-md-8 offset-md-1'>
-      <table class="table">
-        <% @articles.each do |article|%>
+        <table class="table">
+          <% @articles.each do |article|%>
           <tbody>
             <tr>
               <th scope="row">
@@ -28,8 +28,9 @@
           </tbody>
         <% end %>
       </table>
-
+      </div>
     </div>
+    <div class="pagination"><%= paginate @articles %></div>
   </div>
 
 

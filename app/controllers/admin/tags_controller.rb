@@ -1,11 +1,11 @@
 class Admin::TagsController < ApplicationController
   def index
-    @tags = Tag.all
+    @tags = Tag.all.page(params[:page]).per(20)
   end
 
   def show
     @tag = Tag.find(params[:id])
-    @articles = @tag.articles.all
+    @articles = @tag.articles.all.page(params[:page]).per(5)
   end
 
   def destroy

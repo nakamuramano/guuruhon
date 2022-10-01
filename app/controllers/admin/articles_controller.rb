@@ -1,6 +1,6 @@
 class Admin::ArticlesController < ApplicationController
   def index
-    @articles = Article.all
+    @articles = Article.all.page(params[:page]).per(5)
     @tag_list=Tag.all
     @tags = Tag.order(created_at: :desc).limit(6)
   end
@@ -36,19 +36,13 @@ class Admin::ArticlesController < ApplicationController
     end
   end
 
-  def search_tag
-    @tag_list = Tag.all
-    @tag = Tag.find(params[:tag_id])
-    @articles = @tag.articles.all
-  end
-
   def search
     @tags = Tag.order(created_at: :desc).limit(6)
     if params[:title].present?
-      @articles = Article.where('title LIKE ?', "%#{params[:title]}%")
+      @articles = Article.where('title LIKE ?', "%#{params[:title]}%").page(params[:page]).per(10)
       @title = params[:title]
     else
-      @articles = Article.all
+      @articles = Article.all.page(params[:page]).per(10)
     end
   end
 

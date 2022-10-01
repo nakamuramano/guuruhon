@@ -64,7 +64,7 @@ class Public::ArticlesController < ApplicationController
 
   def update
       @article = Article.find(params[:id])
-      tag_list = params[:article][:tag_name].split(",")
+      tag_list = params[:article][:tag_name].split("、")
     if @article.update(article_params)
        @old_relations = ArticleTag.where(article_id: @article.id)
        @old_relations.each do |relation|
