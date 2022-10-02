@@ -7,8 +7,7 @@ before_action :authenticate_user!, except: [:top, :new_guest]
     @bookmarks = Bookmark.where(user_id: @user.id).page(params[:page]).per(10)
     @tags = Tag.order(created_at: :desc).limit(6)
   end
-
-
+  
   def create
     @article = Article.find(params[:article_id])
     bookmark = @article.bookmarks.new(user_id: current_user.id)

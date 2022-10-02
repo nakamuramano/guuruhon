@@ -10,7 +10,12 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     @articles = @user.articles.page(params[:page]).per(10)
     @comment = Comment.new
-    @bookmarks = @user.bookmarks
+  end
+
+  def bookmark
+    @user = User.find(params[:id])
+    @comment = Comment.new
+    @bookmarks = @user.bookmarks.page(params[:page]).per(10)
   end
 
   def edit
@@ -37,7 +42,7 @@ class Admin::UsersController < ApplicationController
 
   def withdrawal
     @user = User.find(params[:id])
-    @user.update(is_active: false)
+   @user.update(is_active: false)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path

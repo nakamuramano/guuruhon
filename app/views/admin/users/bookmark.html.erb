@@ -38,25 +38,27 @@
     </div>
     <div class='col-md-8 offset-md-1'>
       <div class="inner">
-        <h5 class="section-ttl"><%= @user.name %>さんの投稿一覧</h5>
-        <table class='table'>
-          <tbody>
-            <% @articles.each do |article| %>
+        <h5 class="section-ttl">お気に入り<i class="fa-solid fa-star"></i>一覧</h5>
+        <table class="table">
+          <% @bookmarks.each do |bookmark| %>
+            <tbody>
               <tr>
                 <td>
-                  <%= link_to admin_article_path(article.id), class: "link" do %>
-                     <i class="fa-solid fa-book-open"></i> <%= article.title %>
+                <%= link_to admin_article_path(bookmark.article), class: "link" do %>
+                    <%= bookmark.article.title %>
                   <% end %>
                 </td>
-                <td><%= article.content %></td>
+                <td><%= bookmark.article.content %></td>
               </tr>
-            <% end %>
-          </tbody>
+            </tbody>
+          <% end %>
         </table>
-
+  	    <%= link_to admin_user_path(@user.id), class: "link" do %>
+  	      <i class="fa-solid fa-left-long"></i>戻る
+  	    <% end %>
       </div>
     </div>
   </div>
     <div class="pagination">
-      <%= paginate @articles %>
+      <%= paginate @bookmarks %>
     </div>

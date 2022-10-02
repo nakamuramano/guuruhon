@@ -19,8 +19,9 @@
         </div>
       <% end %>
 
-      <%= link_to "Show", admin_article_path(@article.id), class: "link" %> |
-  	  <%= link_to "Back", admin_articles_path, class: "link" %>
+      <%= link_to admin_article_path(@article.id), class: "link" do %>
+        <i class="fa-solid fa-left-long"></i>戻る
+      <% end %>
     </div>
   </div>
 </div>

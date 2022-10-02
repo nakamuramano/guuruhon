@@ -36,6 +36,7 @@ Rails.application.routes.draw do
    patch 'users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
    get "search_tag" => "articles#search_tag"
    post '/guests/guest_sign_in', to: 'guests#new_guest'
+   get 'users/:id/bookmark' => 'users#bookmark', as: 'bookmark'
 
    resources :articles do
        resource :bookmarks, only: [:create, :destroy]
@@ -46,7 +47,6 @@ Rails.application.routes.draw do
      end
    resources :tags
    resources :users
-   resources :bookmarks, only: [:index]
   end
 
 
