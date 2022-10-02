@@ -21,10 +21,13 @@
             <% end %>
           </tr>
           <tr>
-            <td align="center"><%= link_to "編集", edit_admin_user_path, class: "btn btn btn--radius" %></td>
           </tr>
         </tbody>
       </table>
+      <%= link_to "編集する", edit_admin_user_path, class: "btn btn btn--radius" %>
+      <% if @user.is_active? %>
+        <%= link_to "退会する", admin_unsubscribe_path(@user.id), class: "btn btn btn--radius" %>
+      <% end %>
     </div>
     <div class='col-md-8 offset-md-1'>
       <div class="inner">
@@ -49,7 +52,6 @@
           <% @bookmarks.each do |bookmark| %>
             <tbody>
               <tr>
-                <td><%= bookmark.article.user.name %></td>
                 <td>
                 <%= link_to admin_article_path(bookmark.article), class: "link" do %>
                     <%= bookmark.article.title %>

@@ -1,33 +1,26 @@
-<div class="container user_edit">
+<div class="container article">
   <div class="row">
-    <div class="inner_user">
-      <h4 class="section-ttl">プロフィール編集</h4>
-      <%= form_with model: @user, url: user_path, method: :patch do |f| %>
-        <table class="table table-borderless">
-          <tbody>
-            <tr>
-              <td></td>
-              <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>
-            </tr>
-            <tr>
-              <td>あなたの ID</td>
-              <td><%= @user.id %></td>
-            </tr>
-            <tr>
-              <td>ユーザーネーム</td>
-              <td><%= f.text_field :name, :size=>"30" %></td>
-            </tr>
-            <tr>
-              <td>メールアドレス</td>
-              <td><%= f.text_field :email, :size=>"30" %></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><%= f.submit "登録する", class: "btn--radius" %></td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="inner_article">
+      <h4 class="section-ttl">投稿を編集</h4>
+      <%= form_with model: @article, url: admin_article_path, method: :patch do |f| %>
+        <div class="form-group">
+          <label for="book_title">Title</label></br>
+            <%= f.text_field :title, class:"form-control" %>
+        </div>
+        <div class="form-group">
+          <label for="book_opinion">Opinion</label></br>
+          <%= f.text_area :content, class:"form-control" %>
+        </div>
+        <%= f.label"タグ (、で区切ると複数タグ登録できます)" %>
+        <%= f.text_field :tag_name,value: @tag_list,class:"form-control"%>
+
+        <div class="actions" style="margin:20px 0;">
+          <%= f.submit "保存", class: "btn--radius" %>
+        </div>
       <% end %>
+
+      <%= link_to "Show", admin_article_path(@article.id), class: "link" %> |
+  	  <%= link_to "Back", admin_articles_path, class: "link" %>
     </div>
   </div>
 </div>

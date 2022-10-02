@@ -1,5 +1,7 @@
 class Admin::UsersController < ApplicationController
 
+  before_action :check_guest, only: [:update, :destroy, :withdrawal]
+
   def index
     @users = User.all.page(params[:page]).per(5)
   end
@@ -14,7 +16,6 @@ class Admin::UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @tags = Tag.order(created_at: :desc).limit(6)
-    @bookmarks = @user.bookmarks
   end
 
   def update
@@ -39,7 +40,7 @@ class Admin::UsersController < ApplicationController
     @user.update(is_active: false)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
-    redirect_to admin_articles_path
+    redirect_to root_path
   end
 
   private
@@ -47,4 +48,12 @@ class Admin::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :is_active, :profile_image)
   end
+
+  def check_guest
+    @user = current_admin
+    if @user.email == 'admin@example.com'
+      redirect_to admin_user_path, alert: 'ゲストユーザーは編集・削除できません。'
+    end
+  end
+
 end

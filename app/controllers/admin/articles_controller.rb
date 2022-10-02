@@ -1,4 +1,6 @@
 class Admin::ArticlesController < ApplicationController
+  before_action :check_guest, only: [:update, :destroy]
+
   def index
     @articles = Article.all.page(params[:page]).per(5)
     @tag_list=Tag.all
@@ -18,7 +20,6 @@ class Admin::ArticlesController < ApplicationController
     @user = Article.find(params[:id]).user
     @tags = Tag.order(created_at: :desc).limit(6)
     @tag_list = @article.tags.pluck(:tag_name).join("、")
-
   end
 
   def update
@@ -34,6 +35,7 @@ class Admin::ArticlesController < ApplicationController
     else
        render:edit
     end
+
   end
 
   def search
@@ -48,15 +50,24 @@ class Admin::ArticlesController < ApplicationController
 
   def destroy
     Article.find(params[:id]).destroy()
-    redirect_to root_path(params[:article_id])
+    redirect_to admin_articles_path
   end
 
 
 
 
-  private
+private
 
-    def article_params
-        params.require(:article).permit(:title, :content, :profile_image)
+  def article_params
+    params.require(:article).permit(:title, :content, :profile_image)
+  end
+
+  def check_guest
+    @article = Article.find(params[:id])
+    @user = current_admin
+    if @user.email == 'admin@example.com'
+      redirect_to admin_article_path(@article.id), alert: 'ゲストユーザーは編集・削除できません。'
     end
+  end
+
 end

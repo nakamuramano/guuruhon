@@ -35,6 +35,7 @@ Rails.application.routes.draw do
    get 'users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
    patch 'users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
    get "search_tag" => "articles#search_tag"
+   post '/guests/guest_sign_in', to: 'guests#new_guest'
 
    resources :articles do
        resource :bookmarks, only: [:create, :destroy]

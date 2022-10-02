@@ -214,7 +214,7 @@ li{
 
 }
 
-.inner-unsubscribe, .inner_tag, .inner_user{
+.inner-unsubscribe, .inner_tag, .inner_user, .inner_article{
   width: 600px;
   margin: 0 auto;
   margin-bottom: 30px;
@@ -277,7 +277,7 @@ a.btn--radius {
 }
 
 .col-md-3, .col-md-8, .unsubscribe, .user-index, .login,
-.tag_show, .user_edit, .tag_index{
+.tag_show, .user_edit, .tag_index , .article{
   background-color: #fff;
   border-top: 3px solid #bc8f8f;
   border-bottom: 3px solid #bc8f8f;
