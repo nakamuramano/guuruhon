@@ -1,4 +1,4 @@
-   <div class="container">
+  <div class="container">
     <div class="row">
       <div class='col-md-3'>
         <%= render 'public/users/list', bookmark: @bookmarks, user: @user %>
@@ -21,7 +21,33 @@
             <%= f.submit '投稿する', class: "btn--radius" %>
 
           <% end %>
+
+          </div>
         </div>
       </div>
-
+    </div>
   </div>
+
+          <h4 class="section-ttl">Rakuserach</h4>
+          <div class='content'>
+            <div id="search-box">
+              <%= form_tag('/articles/new', method: :get) do %>
+                <%= text_field_tag :url, "", name: "keyword", placeholder: "キーワードを打ち込んでください", style: "width: 200px;"%><button title="検索" type="submit">検索</button>
+              <% end %>
+            </div>
+            <h4 class="section-ttl">検索結果</h4>
+            <div id='article_list'>
+              <%= render partial: 'article_list' %>
+            </div>
+
+<div class="search-box">
+    <%= form_with url: books_search_path, method: :get, local: true do |f| %>
+    <div class="form-group">
+        <%= f.text_field :keyword, value: params[:keyword], class: "form-control" %>
+        <%= f.submit '本を検索', class: "form-control btn btn-success" %>
+    </div>
+    <% end %>
+<% if @items.present? %>
+  <%= render '' %>
+<% end %>
+</div>

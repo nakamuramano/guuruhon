@@ -24,7 +24,12 @@ class Public::ArticlesController < ApplicationController
     @user = current_user
     @bookmarks = Bookmark.where(user_id: current_user.id)
     @tags = Tag.order(created_at: :desc).limit(6)
+
+    if params[:keyword]
+       @sits = RakutenWebService::Books::Book.search(keyword: params[:keyword])
+    end
   end
+
 
   def create
     @article = Article.new(article_params)
@@ -38,11 +43,9 @@ class Public::ArticlesController < ApplicationController
     end
   end
 
-  #def search_tag
-   # @tag_list = Tag.all
-   # @tag = Tag.find(params[:tag_id])
-    #@articles = @tag.articles.all
- # end
+  def rakusearch
+  end
+
 
   def search
     @tags = Tag.order(created_at: :desc).limit(6)
