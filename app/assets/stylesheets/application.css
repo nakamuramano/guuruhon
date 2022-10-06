@@ -220,7 +220,7 @@ li{
   margin-bottom: 30px;
 }
 
-.bookmarks_inner, .inner_user_index, .inner_tag_index{
+.bookmarks_inner, .inner_user_index, .inner_tag_index, .inner_books{
   width: 900px;
   margin: 0 auto;
   margin-bottom: 30px;
@@ -277,7 +277,7 @@ a.btn--radius {
 }
 
 .col-md-3, .col-md-8, .unsubscribe, .user-index, .login,
-.tag_show, .user_edit, .tag_index , .article{
+.tag_show, .user_edit, .tag_index , .article, .books{
   background-color: #fff;
   border-top: 3px solid #bc8f8f;
   border-bottom: 3px solid #bc8f8f;

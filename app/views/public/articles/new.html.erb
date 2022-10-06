@@ -8,7 +8,7 @@
       <div class='col-md-8 offset-md-1'>
         <div class="inner">
           <h4 class="section-ttl">投稿してみよう</h4>
-          <%= form_with model: @article, url: '/articles', method: :post do |f| %>
+          <%= form_with model: @article, url: articles_path, method: :post do |f| %>
             <label>タイトル</label>
             <p><%= f.text_field :title, :size=>"60", placeholder:"例）タイトル名：著者" %></p>
 
@@ -17,8 +17,7 @@
 
             <label>タグ</label>
             <p><%= f.text_field :tag_names, :size=>"60", placeholder:"例）おにぎり,和食が食べたくなる!" %></p>
-
-            <%= f.submit '投稿する', class: "btn--radius" %>
+            <p><%= f.submit '投稿する', class: "btn--radius" %></p>
 
           <% end %>
 
@@ -28,26 +27,3 @@
     </div>
   </div>
 
-          <h4 class="section-ttl">Rakuserach</h4>
-          <div class='content'>
-            <div id="search-box">
-              <%= form_tag('/articles/new', method: :get) do %>
-                <%= text_field_tag :url, "", name: "keyword", placeholder: "キーワードを打ち込んでください", style: "width: 200px;"%><button title="検索" type="submit">検索</button>
-              <% end %>
-            </div>
-            <h4 class="section-ttl">検索結果</h4>
-            <div id='article_list'>
-              <%= render partial: 'article_list' %>
-            </div>
-
-<div class="search-box">
-    <%= form_with url: books_search_path, method: :get, local: true do |f| %>
-    <div class="form-group">
-        <%= f.text_field :keyword, value: params[:keyword], class: "form-control" %>
-        <%= f.submit '本を検索', class: "form-control btn btn-success" %>
-    </div>
-    <% end %>
-<% if @items.present? %>
-  <%= render '' %>
-<% end %>
-</div>

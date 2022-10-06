@@ -10,6 +10,7 @@ class Article < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
+
   def save_tag(sent_tags)
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
     old_tags = current_tags - sent_tags
@@ -29,11 +30,5 @@ class Article < ApplicationRecord
     bookmarks.where(user_id: user).exists?
   end
 
-
-
-
 end
-
-
-
 

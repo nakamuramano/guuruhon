@@ -1,6 +1,8 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:top, :new_guest]
   before_action :correct_user, only: [:edit, :unsubscribe]
+  
+  
 
   def show
     @user = User.find(params[:id])

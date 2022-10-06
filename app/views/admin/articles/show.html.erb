@@ -32,14 +32,12 @@
           <div class="media border mb-3">
             <%= image_tag comment.user.get_profile_image(60,60), class:"bd-placeholder-img align-self-center mx-3 image";  %>
             <div>
-              <p>
                 <%= link_to admin_user_path(comment.user.id), class: "link" do %>
                   <%= comment.user.name %>
                 <% end %>
                 <%= comment.created_at.strftime('%Y/%m/%d') %>
-              </p>
-              <p><%= comment.body %></p>
                 <%= link_to "削除", admin_article_comment_path(comment.article, comment), method: :delete, class: "link" %>
+              <p><%= comment.body %></p>
             </div>
           </div>
         <% end %>

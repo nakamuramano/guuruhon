@@ -24,28 +24,24 @@ class Public::ArticlesController < ApplicationController
     @user = current_user
     @bookmarks = Bookmark.where(user_id: current_user.id)
     @tags = Tag.order(created_at: :desc).limit(6)
-
-    if params[:keyword]
-       @sits = RakutenWebService::Books::Book.search(keyword: params[:keyword])
-    end
   end
 
-
   def create
+    @user = current_user
+    @bookmarks = Bookmark.where(user_id: current_user.id)
+    @tags = Tag.order(created_at: :desc).limit(6)
     @article = Article.new(article_params)
     @article.user_id = current_user.id
-    tag_list = params[:article][:tag_names].split("、")
-    if @article.save
+    tag_list = params[:article][:tag_names].to_s.split("、")
+    if @article.save!
      @article.save_tag(tag_list)
       redirect_to articles_path(@article),notice:'投稿完了しました:)'
     else
       render:new
-    end
-  end
+    end  end
 
   def rakusearch
   end
-
 
   def search
     @tags = Tag.order(created_at: :desc).limit(6)
@@ -90,7 +86,7 @@ class Public::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :profile_image)
+    params.require(:article).permit(:title, :content, :profile_image, :book, tag: [:tag_name]).merge(user_id: current_user.id)
   end
 
   def correct_user
