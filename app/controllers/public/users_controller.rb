@@ -1,8 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except: [:top, :new_guest]
   before_action :correct_user, only: [:edit, :unsubscribe]
-  
-  
+
 
   def show
     @user = User.find(params[:id])
@@ -27,6 +26,11 @@ class Public::UsersController < ApplicationController
        render :edit
     end
   end
+
+  def rank
+    @my_ranks = current_user.articles.sort { |a, b| b.comments.count <=> a.comments.count }
+  end
+
 
   def withdrawal
     @user = User.find(params[:id])

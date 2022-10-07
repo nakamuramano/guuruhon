@@ -11,7 +11,8 @@ Rails.application.routes.draw do
    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
    get "search_tag" => "articles#search_tag"
-   
+   get 'users/:id/rank' => 'users#rank', as: 'rank'
+
 
    resources :users, only: [:show, :edit, :update]
    resources :articles do
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
    resources :tags
    resources :bookmarks, only: [:index]
    resources :books
-   
+
   end
 
   devise_for :admins, skip: [:registrations, :passwords], controllers: {
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
    get "search_tag" => "articles#search_tag"
    post '/guests/guest_sign_in', to: 'guests#new_guest'
    get 'users/:id/bookmark' => 'users#bookmark', as: 'bookmark'
+   get 'users/:id/rank' => 'users#rank', as: 'rank'
    get 'books/search' => 'books#search'
 
    resources :articles do
