@@ -29,6 +29,8 @@ class Public::UsersController < ApplicationController
 
   def rank
     @my_ranks = current_user.articles.sort { |a, b| b.comments.count <=> a.comments.count }
+    @user = User.find(params[:id])
+    
   end
 
 

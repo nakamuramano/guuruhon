@@ -3,12 +3,18 @@
       <div class='col-md-3'>
         <%= render 'list', bookmark: @bookmarks, user: @user %>
         <%= render 'public/articles/index', tag: @tags %>
-        <%= link_to 'ランキング', rank_path %>
 
       </div>
       <div class='col-md-8 offset-md-1'>
         <div class="inner">
           <h5 class="section-ttl"><%= @user.name %>さんの投稿一覧</h5>
+        <div class="rank">
+          <%= link_to rank_path, class: "link" do %>
+            <i class="fa-solid fa-crown"></i>投稿のコメント数ランキング
+          <% end %>
+        </div>
+
+
           <table class='table table-hover table-inverse'>
             <tbody>
               <% @articles.each do |article| %>

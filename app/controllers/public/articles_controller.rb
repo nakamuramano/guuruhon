@@ -8,6 +8,9 @@ class Public::ArticlesController < ApplicationController
     @tags = Tag.order(created_at: :desc).limit(6)
     @user = current_user
     @bookmarks = Bookmark.where(user_id: current_user.id)
+    
+    
+    
   end
 
   def show

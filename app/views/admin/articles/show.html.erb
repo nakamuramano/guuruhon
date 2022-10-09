@@ -16,6 +16,15 @@
           <td> <%= @article.title %></td>
           <td><%= @article.content %></td>
         </tr>
+        <tr>
+          <td></td>
+          <td colspan="2">
+            <%= form_with url: admin_books_path, method: :get, local: true do |f| %>
+              <%= f.text_field :keyword, placeholder: "本のタイトル・著者名", :size=>"30" %>
+              <%= f.submit '本を検索', class: "btn--radius" %>
+            <% end %>
+          </td>
+        </tr>
       </table>
 
         <%= link_to '投稿編集', edit_admin_article_path(@article.id), class: 'btn btn btn--radius' %>

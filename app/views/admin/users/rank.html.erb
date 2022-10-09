@@ -6,7 +6,7 @@
         <% last_comment = 0 %>
         <% j = 1 %>
         <tbody>
-          <% @my_ranks.each.with_index(1) do |article, i| %>
+          <% @ranks.each.with_index(1) do |article, i| %>
             <% if i == 1 %>
               <% last_comment = article.comments.count %>
             <% end %>
@@ -15,7 +15,7 @@
               <tr>
                 <td>第<%= j %>位</td>
                 <td>
-                  <%= link_to article_path(article.id), class: "link" do %>
+                  <%= link_to admin_article_path(article.id), class: "link" do %>
                     <i class="fa-solid fa-book-open"></i> <%= article.title %>
                   <% end %>
                 </td>
@@ -26,7 +26,7 @@
               <tr>
                 <td>第<%= j %>位</td>
                 <td>
-                  <%= link_to article_path(article.id), class: "link" do %>
+                  <%= link_to admin_article_path(article.id), class: "link" do %>
                     <i class="fa-solid fa-book-open"></i> <%= article.title %>
                   <% end %>
                 </td>
@@ -36,7 +36,7 @@
           <% end %>
         </tbody>
       </table>
-  	    <%= link_to user_path(@user.id), class: "link" do %>
+  	    <%= link_to admin_user_path(@user.id), class: "link" do %>
   	      <i class="fa-solid fa-left-long"></i>戻る
   	    <% end %>
     </div>

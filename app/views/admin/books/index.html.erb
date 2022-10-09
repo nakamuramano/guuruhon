@@ -1,0 +1,31 @@
+<div class="container books">
+  <div class="row">
+    <div class="inner_books">
+      <h4 class="section-ttl">検索結果</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></i></th>
+            <th scope="col">タイトル</th>
+            <th scope="col">著者名</th>
+            <th scope="col">出版社</th>
+          </tr>
+        </thead>
+        <% @books.each do |book| %>
+          <tbody>
+            <tr>
+              <td><%= link_to (image_tag(book.medium_image_url)), book.item_url %></td>
+              <td>
+                <%= link_to book.item_url, class: "link" do %>
+                  <%= book.title %>
+                <% end %>
+                </td>
+              <td><%= book.author %></td>
+              <td><%= book.publisher_name %></td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

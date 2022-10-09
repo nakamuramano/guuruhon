@@ -39,6 +39,12 @@
     <div class='col-md-8 offset-md-1'>
       <div class="inner">
         <h5 class="section-ttl"><%= @user.name %>さんの投稿一覧</h5>
+        <div class="rank">
+          <%= link_to admin_rank_path, class: "link" do %>
+            <i class="fa-solid fa-crown"></i>投稿のコメント数ランキング
+          <% end %>
+        </div>
+
         <table class='table'>
           <tbody>
             <% @articles.each do |article| %>
