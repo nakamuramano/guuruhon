@@ -9,18 +9,21 @@
     <div class='col-md-8 offset-md-1'>
       <table class='table'>
         <tr>
-          <td>
+          <td align="center">
             <%= link_to user_path(@user_id.id), class: "link" do %>
-              <%= image_tag @user_id.get_profile_image(80,80), class: "image" %></br>
+              <%= image_tag @user_id.get_profile_image(80,80), class: "image" %>
               <%= @user_id.name %>
             <% end %>
           </td>
-          <td> <%= @article.title %></td>
-          <td><%= @article.content %></td>
         </tr>
         <tr>
-          <td></td>
-          <td colspan="2">
+          <td>
+            <i class="fa-solid fa-book-open"></i> <%= @article.title %>
+            <br><%= @article.content %>
+          </td>
+        </tr>
+        <tr>
+          <td>
             <%= form_with url: books_path, method: :get, local: true do |f| %>
               <%= f.text_field :keyword, placeholder: "本のタイトル・著者名", :size=>"30" %>
               <%= f.submit '本を検索', class: "btn--radius" %>

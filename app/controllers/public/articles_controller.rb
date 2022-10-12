@@ -8,9 +8,6 @@ class Public::ArticlesController < ApplicationController
     @tags = Tag.order(created_at: :desc).limit(6)
     @user = current_user
     @bookmarks = Bookmark.where(user_id: current_user.id)
-    
-    
-    
   end
 
   def show
@@ -30,16 +27,18 @@ class Public::ArticlesController < ApplicationController
   end
 
   def create
+    #投稿・タグを保存
     @user = current_user
     @bookmarks = Bookmark.where(user_id: current_user.id)
     @tags = Tag.order(created_at: :desc).limit(6)
     @article = Article.new(article_params)
     @article.user_id = current_user.id
     tag_list = params[:article][:tag_names].to_s.split("、")
-    if @article.save!
+    if @article.save
      @article.save_tag(tag_list)
-      redirect_to articles_path(@article),notice:'投稿完了しました:)'
+      redirect_to articles_path(@article),notice:'投稿を完了しました！'
     else
+      flash[:notice] = '入力し直しててください！'
       render:new
     end  end
 
@@ -47,6 +46,7 @@ class Public::ArticlesController < ApplicationController
   end
 
   def search
+    #タグ検索機能
     @tags = Tag.order(created_at: :desc).limit(6)
     @user = current_user
     if params[:title].present?

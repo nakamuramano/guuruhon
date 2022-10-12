@@ -9,8 +9,10 @@
         <div class="inner">
           <h5 class="section-ttl"><%= @user.name %>さんの投稿一覧</h5>
         <div class="rank">
-          <%= link_to rank_path, class: "link" do %>
-            <i class="fa-solid fa-crown"></i>投稿のコメント数ランキング
+          <% if @user == current_user %>
+            <%= link_to rank_path, class: "link" do %>
+              <i class="fa-solid fa-crown"></i>投稿のコメント数ランキングを見る
+            <% end %>
           <% end %>
         </div>
 
@@ -23,8 +25,8 @@
                     <%= link_to article_path(article.id), class: "link" do %>
                       <i class="fa-solid fa-book-open"></i> <%= article.title %>
                     <% end %>
+                    <br><%= article.content %>
                   </td>
-                  <td><%= article.content %></td>
                 </tr>
               <% end %>
             </tbody>

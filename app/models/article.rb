@@ -7,9 +7,8 @@ class Article < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
-  validates :title, presence: true
-  validates :content, presence: true
-
+  validates :title, presence: true, length: {maximum: 50}
+  validates :content, presence: true, length: {maximum: 200}
 
   def save_tag(sent_tags)
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?

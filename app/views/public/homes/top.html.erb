@@ -22,7 +22,6 @@
                       <%= article.title %>
                     <% end %>
                 </td>
-                <td><%= article.content %></td>
                 <td>
                   <%= link_to "#{article.comments.count} コメント", article_path(article.id), class: "link" %>
                 </td>

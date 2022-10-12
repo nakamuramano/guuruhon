@@ -1,6 +1,7 @@
 class Public::BooksController < ApplicationController
 
 def index
+  #楽天API 検索一覧
     @articles = Article.all.page(params[:page]).per(5)
     @tag_list=Tag.all
     @tags = Tag.order(created_at: :desc).limit(6)

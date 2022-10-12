@@ -48,7 +48,7 @@ class Admin::UsersController < ApplicationController
 
   def withdrawal
     @user = User.find(params[:id])
-   @user.update(is_active: false)
+    @user.update(is_active: false)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path

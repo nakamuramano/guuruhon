@@ -19,7 +19,6 @@
                     <%= article.title %>
                   <% end %>
               </td>
-              <td valign="bottom"><%= article.content %></td>
               <td valign="bottom">
                 <%= link_to "#{article.comments.count} コメント", admin_article_path(article.id), class: "link"%>
               </td>

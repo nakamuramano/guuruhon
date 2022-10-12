@@ -10,7 +10,7 @@
           <h4 class="section-ttl">投稿してみよう</h4>
           <%= form_with model: @article, url: articles_path, method: :post do |f| %>
             <label>タイトル</label>
-            <p><%= f.text_field :title, :size=>"60", placeholder:"例）タイトル名：著者" %></p>
+            <p><%= f.text_field :title, :size=>"60", placeholder:"例）本のタイトル名" %></p>
 
             <label>本文</label>
             <p><%= f.text_area :content, :size=>"60", placeholder:"おすすめの本について自由にお書きください" %></p>
