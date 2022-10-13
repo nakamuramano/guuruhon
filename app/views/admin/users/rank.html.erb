@@ -13,24 +13,24 @@
             <% if article.comments.count != last_comment %>
               <% j = i %>
               <tr>
-                <td>第<%= j %>位</td>
+                <td width="80">第<%= j %>位</td>
                 <td>
                   <%= link_to admin_article_path(article.id), class: "link" do %>
                     <i class="fa-solid fa-book-open"></i> <%= article.title %>
                   <% end %>
+                  <br><%= article.content %>
                 </td>
-                <td><%= article.content %></td>
               <% last_comment = article.comments.count %>
             <% else %>
               <% last_comment = article.comments.count %>
               <tr>
-                <td>第<%= j %>位</td>
+                <td width="80">第<%= j %>位</td>
                 <td>
                   <%= link_to admin_article_path(article.id), class: "link" do %>
                     <i class="fa-solid fa-book-open"></i> <%= article.title %>
                   <% end %>
+                  <br><%= article.content %>
                 </td>
-                <td><%= article.content %></td>
               </tr>
             <% end %>
           <% end %>

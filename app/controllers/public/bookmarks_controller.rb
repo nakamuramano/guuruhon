@@ -1,5 +1,4 @@
 class Public::BookmarksController < ApplicationController
-
 before_action :authenticate_user!, except: [:top, :new_guest]
 
   def index

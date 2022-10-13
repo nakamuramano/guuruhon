@@ -1,4 +1,7 @@
 class Public::HomesController < ApplicationController
+  
+# ログインページ、新規登録ページ以外はサインインしていないとアクセスできないが、topページ、ゲストログインはアクセス可能
+  
 before_action :authenticate_user!, except: [:top, :new_guest]
 
   def top
