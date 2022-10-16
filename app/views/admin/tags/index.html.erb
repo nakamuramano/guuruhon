@@ -3,6 +3,7 @@
   <div class="row">
     <div class="inner_tag_index">
       <h4 class="section-ttl">タグ一覧</h4>
+      <%# タグ一覧 %>
       <% @tags.each do |tag| %>
         <%= link_to "#{tag.tag_name} ( #{tag.articles.count} )", admin_tag_path(tag), class: "btn btn btn--radius" %>
       <% end %>
