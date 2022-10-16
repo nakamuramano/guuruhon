@@ -6,12 +6,15 @@
           <% @users.each do |user| %>
             <tbody>
               <tr>
+                <%# アイコン %>
                 <td><%= image_tag user.get_profile_image(80,80), class: "image" %></td>
                 <td>
+                  <%# ユーザーネーム %>
                   <%= link_to admin_user_path(user.id), class: "link" do %>
                     <%= user.name %>
                   <% end %>
                 </td>
+                <%# ユーザーアカウントが有効かどうか確認　true = 有効 %>
                 <% if user.is_active? %>
                   <td class="text-success">有効</td>
                 <% else %>
