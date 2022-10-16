@@ -6,10 +6,13 @@
         <% last_comment = 0 %>
         <% j = 1 %>
         <tbody>
+          <%# 投稿へのコメント数ランキング %>
           <% @ranks.each.with_index(1) do |article, i| %>
             <% if i == 1 %>
+              <%# 最初の値をlast_commentに保存 %>
               <% last_comment = article.comments.count %>
             <% end %>
+            <%# last_commentとコメント数を比べて同じなら同じ順位、違うなら次の順位表 %>
             <% if article.comments.count != last_comment %>
               <% j = i %>
               <tr>
