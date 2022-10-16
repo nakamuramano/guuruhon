@@ -6,6 +6,7 @@
         <%# サイドブロック タグ %>
         <%= render 'tag', tag: @tags %>
       </div>
+      <%# メインブロック 投稿一覧 
       <%= render 'articles', article: @articles %>
     </div>
     <div class="pagination"><%= paginate @articles %></div>

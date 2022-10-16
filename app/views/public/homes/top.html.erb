@@ -2,36 +2,10 @@
     <div class="row">
       <div class='col-md-3'>
         <%# サイドブロック タグ %>
-        <%= render 'public/articles/index', tag: @tag %>
+        <%= render 'public/articles/tag', tag: @tag %>
       </div>
+      <%= render 'public/articles/articles', article: @articles %>
 
-      <div class='col-md-8 offset-md-1'>
-        <table class="table">
-          <% @articles.each do |article|%>
-            <tbody>
-              <tr>
-                <th scope="row">
-
-                  <%= link_to user_path(article.user.id) do %>
-                     <%= image_tag article.user.get_profile_image(80,80), class: "image" %>
-                  <% end %>
-
-                  <p></p>
-                </th>
-                <td>
-                   <%= link_to article_path(article.id), class: "link" do %>
-                      <%= article.title %>
-                    <% end %>
-                </td>
-                <td>
-                  <%= link_to "#{article.comments.count} コメント", article_path(article.id), class: "link" %>
-                </td>
-              </tr>
-              <tr>
-            </tbody>
-          <% end %>
-        </table>
-      </div>
     </div>
     <div class="pagination"><%= paginate @articles, class: 'text-light' %></div>
 
