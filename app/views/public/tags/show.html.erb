@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class='col-md-3'>
+      <%# サイドブロック ユーザープロフィール %>
       <%= render 'public/users/list', bookmark: @bookmarks, user: @user %>
     </div>
 
@@ -8,19 +9,21 @@
       <div class="inner">
         <h4 class="section-ttl">タグが<%= @tag.tag_name%>の投稿一覧</h4>
         <table class="table">
+          <%# タグ検索で当てはまった投稿一覧 %>
           <% @tag.articles.each do |article| %>
             <tbody>
               <tr>
                 <th>
+                  <%# アイコン %>
                   <%= link_to user_path(article.user.id) do %>
                      <%= image_tag article.user.get_profile_image(80,80), class: "image" %>
                   <% end %>
                   <p></p>
                 </th>
+                <%# タイトル %>
                 <td><%= link_to article.title, article_path(article), class: "link" %></td>
-                <td>
-                  <%= link_to "#{article.comments.count} コメント", article_path(article.id), class: "link" %>
-                </td>
+                <%# コメント数 %>
+                <td><%= link_to "#{article.comments.count} コメント", article_path(article.id), class: "link" %></td>
               </tr>
             </tbody>
           <% end %>
