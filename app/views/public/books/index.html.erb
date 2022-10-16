@@ -11,16 +11,21 @@
             <th scope="col">出版社</th>
           </tr>
         </thead>
+        <%# 楽天ブックス検索API 結果 %>
         <% @books.each do |book| %>
           <tbody>
             <tr>
+              <%# 本画像 %>
               <td><%= link_to (image_tag(book.medium_image_url)), book.item_url %></td>
               <td>
+                <%# タイトル %>
                 <%= link_to book.item_url, class: "link" do %>
                   <%= book.title %>
                 <% end %>
-                </td>
+              </td>
+              <%# 著者名 %>
               <td><%= book.author %></td>
+              <%# 出版社名 %>
               <td><%= book.publisher_name %></td>
             </tr>
           </tbody>
