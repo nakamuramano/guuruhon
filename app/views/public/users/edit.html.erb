@@ -1,30 +1,35 @@
 <div class="container">
   <div class="row">
     <div class='col-md-3'>
+      <%# サイドブロック タグ %>
       <%= render 'public/articles/tag', tag: @tags %>
     </div>
 
     <div class='col-md-8 offset-md-1'>
-
       <div class="inner">
         <h4 class="section-ttl">プロフィール編集</h4>
+        <%# ユーザー登録情報 %>
         <%= form_with model: @user, url: user_path, method: :patch do |f| %>
           <table class="table table-borderless">
             <tbody>
               <tr>
                 <td></td>
+                <%# プロフィール画像 %>
                 <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>
               </tr>
               <tr>
                 <td>あなたの ID</td>
+                <%# ユーザーID %>
                 <td><%= @user.id %></td>
               </tr>
               <tr>
                 <td>ユーザーネーム</td>
+                <%# ユーザーネーム %>
                 <td><%= f.text_field :name, :size=>"30" %></td>
               </tr>
               <tr>
                 <td>メールアドレス</td>
+                <%# メールアドレス %>
                 <td><%= f.text_field :email, :size=>"30" %></td>
               </tr>
                <tr>
