@@ -6,22 +6,27 @@
       <table class="table">
         <tbody>
           <tr>
+            <%# ユーザーID %>
             <td>ID: <%= @user.id %></td>
           </tr>
           <tr>
+            <%# ユーザーネーム %>
             <td><%= @user.name %></td>
           </tr>
           <tr>
+            <%# メールアドレス %>
             <td><%= @user.email %></td>
           </tr>
           <tr>
             <td>
+              <%# ブックマーク一覧推移 %>
               <%= link_to admin_bookmark_path(@user.id), class: "link" do %>
                 お気に入り<i class="fa-solid fa-star"></i>
               <% end %>
             </td>
           </tr>
           <tr>
+            <%# ユーザーアカウントが有効か確認　true = 有効 %>
             <% if @user.is_active? %>
               <td class="text-success">有効</td>
             <% else %>
@@ -41,6 +46,7 @@
       <div class="inner">
         <h5 class="section-ttl"><%= @user.name %>さんの投稿一覧</h5>
         <div class="rank">
+          <%# コメントランキング一覧ページ推移 %>
           <%= link_to admin_rank_path, class: "link" do %>
             <i class="fa-solid fa-crown"></i>投稿のコメント数ランキング
           <% end %>
@@ -48,13 +54,16 @@
 
         <table class='table'>
           <tbody>
+            <%# 投稿一覧 %>
             <% @articles.each do |article| %>
               <tr>
                 <td>
+                  <%# タイトル %>
                   <%= link_to admin_article_path(article.id), class: "link" do %>
                      <i class="fa-solid fa-book-open"></i> <%= article.title %>
                   <% end %>
-                <br><%= article.content %>
+                  <%# 本文 %>
+                  <br><%= article.content %>
                 </td>
               </tr>
             <% end %>
