@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class='col-md-3'>
+      <%# サイドブロック タグ %>
       <%= render 'tag', tag: @tags %>
     </div>
 
@@ -8,14 +9,17 @@
       <div class="inner">
         <h4 class="section-ttl">検索結果"<%= @title %>"</h4>
         <table class="table">
+          <%# キーワード検索結果 %>
           <% @articles.each do |article| %>
             <tbody>
               <tr>
                 <td>
+                   <%# 検索結果 投稿タイトル %>
                   <%= link_to admin_article_path(article.id), class: "link" do %>
                     <i class="fa-solid fa-arrow-right"></i> <%= article.title %>
                   <% end %>
                 </td>
+                <%# コメント数 %> 
                 <td><%= (article.comments.count) %>コメント</td>
               </tr>
             </tbody>
