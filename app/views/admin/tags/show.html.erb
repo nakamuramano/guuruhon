@@ -4,23 +4,26 @@
       <h4 class="section-ttl">
         タグが"<%= @tag.tag_name%>"の投稿一覧
         <div class="tag_delete">
+          <%# タグ削除ボタン %>
           <%= link_to 'タグ削除', admin_tag_path(@tag), method: :delete, data: {confirm: '関連づいた記事のタグが空になりますがタグを削除しますか？'}, class: "btn btn btn--radius" %>
         </div>
       </h4>
         <table class="table">
+          <%# タグ検索で当てはまった投稿一覧 %>
           <% @tag.articles.each do |article| %>
             <tbody>
               <tr>
                 <th>
+                  <%# アイコン %>
                   <%= link_to admin_user_path(article.user.id) do %>
                      <%= image_tag article.user.get_profile_image(80,80), class: "image" %>
                   <% end %>
                   <p></p>
                 </th>
+                <%# タイトル %>
                 <td><%= link_to article.title, admin_article_path(article), class: "link" %></td>
-                <td>
-                  <%= link_to "#{article.comments.count} コメント", admin_article_path(article.id), class: "link" %>
-                </td>
+                <%# コメント数 %>
+                <td><%= link_to "#{article.comments.count} コメント", admin_article_path(article.id), class: "link" %></td>
               </tr>
             </tbody>
           <% end %>
