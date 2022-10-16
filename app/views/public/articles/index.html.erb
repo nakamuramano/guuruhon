@@ -4,37 +4,9 @@
         <%# サイドブロック ユーザープロフィール %>
         <%= render 'public/users/list', bookmark: @bookmarks, user: @user %>
         <%# サイドブロック タグ %>
-        <%= render 'index', tag: @tags %>
+        <%= render 'tag', tag: @tags %>
       </div>
-
-      <div class='col-md-8 offset-md-1'>
-        <table class="table">
-          <%# 投稿一覧 %>
-          <% @articles.each do |article|%>
-            <tbody>
-              <tr>
-                <th>
-                  <%# アイコン %>
-                  <%= link_to user_path(article.user.id) do %>
-                     <%= image_tag article.user.get_profile_image(80,80), class: "image" %>
-                  <% end %>
-                  <p></p>
-                </th>
-                <td>
-                  <%# タイトル %>
-                  <%= link_to article_path(article.id), class: "link" do %>
-                    <%= article.title %>
-                  <% end %>
-                </td>
-                <td valign="bottom">
-                  <%# コメント数 %>
-                  <%= link_to "#{article.comments.count} コメント", admin_article_path(article.id), class: "link"%>
-                </td>
-              </tr>
-            </tbody>
-          <% end %>
-        </table>
-      </div>
+      <%= render 'articles', article: @articles %>
     </div>
     <div class="pagination"><%= paginate @articles %></div>
   </div>
