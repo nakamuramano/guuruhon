@@ -7,7 +7,7 @@
       <%# サイドブロック タグ %>
       <%= render 'tag', tag: @tags %>
     </div>
-    
+
     <div class='col-md-8 offset-md-1'>
       <table class='table'>
         <tr>
@@ -43,7 +43,7 @@
         <%= link_to '投稿編集', edit_article_path(@article.id), class: 'btn btn btn--radius' %>
         <%= link_to '投稿削除', article_path(@article), method: :delete, class:'btn btn btn--radius', "data-confirm" => "本当に削除しますか？" %>
       <% end %>
-      
+
       <%# ブックマーク済みか確認 %>
       <% if @article.bookmarked_by?(current_user) %>
         <%= link_to article_bookmarks_path(@article), method: :delete, class: "link" do %>
@@ -69,16 +69,16 @@
             <%# アイコン %>
             <%= image_tag comment.user.get_profile_image(60,60), class:"bd-placeholder-img align-self-center mx-3 image";  %>
             <div>
-                <%# ユーザーネーム/日時%>
-                <%= link_to user_path(comment.user.id), class: "link" do %>
-                  <%= comment.user.name %>
-                <% end %>
-                <%= comment.created_at.strftime('%Y/%m/%d') %>
-                <%# 自分のコメント %>
-                <% if comment.user == current_user %>
-                  <%= link_to "削除", article_comment_path(comment.article, comment), method: :delete, class: "link" %>
-                <% end %>
-
+              <%# ユーザーネーム/日時%>
+              <%= link_to user_path(comment.user.id), class: "link" do %>
+                <%= comment.user.name %>
+              <% end %>
+              <%= comment.created_at.strftime('%Y/%m/%d') %>
+              <%# 自分のコメント %>
+              <% if comment.user == current_user %>
+                <%= link_to "削除", article_comment_path(comment.article, comment), method: :delete, class: "link" %>
+              <% end %>
+              <%# コメント本文 %>
               <p><%= comment.body %></p>
             </div>
           </div>

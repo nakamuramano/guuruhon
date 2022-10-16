@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class='col-md-3'>
+      <%# サイドブロック タグ %>
       <%= render 'tag', tag: @tags %>
     </div>
 
@@ -8,20 +9,25 @@
       <table class='table'>
         <tr>
           <td align="center">
+            <%# アイコン %>
             <%= link_to admin_user_path(@user.id), class: "link" do %>
               <%= image_tag @user.get_profile_image(80,80), class: "image" %>
+              <%# ユーザーネーム %>
               <%= @user.name %>
             <% end %>
           </td>
         </tr>
         <tr>
           <td>
+             <%# タイトル %>
             <h5><i class="fa-solid fa-book-open"></i> <%= @article.title %></h5>
+            <%# 本文 %>
             <br><%= @article.content %>
           </td>
         </tr>
         <tr>
           <td>
+            <%# 楽天API検索 %>
             <%= form_with url: admin_books_path, method: :get, local: true do |f| %>
               <%= f.text_field :keyword, placeholder: "本のタイトル・著者名", :size=>"30" %>
               <%= f.submit '本を検索', class: "btn--radius" %>
@@ -34,30 +40,31 @@
         <%= link_to '投稿削除', admin_article_path(@article), method: :delete, class:'btn btn btn--radius', "data-confirm" => "本当に削除しますか？" %>
 
       <h6>#タグ</h6>
+      <%# タグ %>
       <% @article_tags.each do |tag| %>
         <%= link_to "#{tag.tag_name} ( #{tag.articles.count} )", admin_tag_path(tag), class: "link" %>
       <% end %>
 
       <div class="comments card-text">
         <h6 class="mt-3"><%= @article.comments.count %>件コメント</h6>
+        <%# コメント %>
         <% @article.comments.each do |comment| %>
           <div class="media border mb-3">
+            <%# アイコン %>
             <%= image_tag comment.user.get_profile_image(60,60), class:"bd-placeholder-img align-self-center mx-3 image";  %>
             <div>
-                <%= link_to admin_user_path(comment.user.id), class: "link" do %>
-                  <%= comment.user.name %>
-                <% end %>
-                <%= comment.created_at.strftime('%Y/%m/%d') %>
-                <%= link_to "削除", admin_article_comment_path(comment.article, comment), method: :delete, class: "link" %>
+              <%# ユーザーネーム/日時%>
+              <%= link_to admin_user_path(comment.user.id), class: "link" do %>
+                <%= comment.user.name %>
+              <% end %>
+              <%= comment.created_at.strftime('%Y/%m/%d') %>
+              <%= link_to "削除", admin_article_comment_path(comment.article, comment), method: :delete, class: "link" %>
+              <%# コメント本文 %>
               <p><%= comment.body %></p>
             </div>
           </div>
         <% end %>
       </div>
-
     </div>
-
-
-
   </div>
 </div>
