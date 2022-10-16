@@ -2,27 +2,33 @@
     <div class="row">
       <div class="inner_user">
         <h4 class="section-ttl">プロフィール編集</h4>
+        <%# ユーザー情報編集 %>
         <%= form_with model: @user, url: admin_user_path, method: :patch do |f| %>
           <table class="table table-borderless">
             <tbody>
               <tr>
                 <td></td>
+                <%# プロフィール画像 %>
                 <td><%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %></td>
               </tr>
               <tr>
-                <td>あなたの ID</td>
+                <td>ユーザー ID</td>
+                <%# ユーザーID %>
                 <td><%= @user.id %></td>
               </tr>
               <tr>
                 <td>ユーザーネーム</td>
+                <%# ユーザーネーム %>
                 <td><%= f.text_field :name, :size=>"30" %></td>
               </tr>
               <tr>
                 <td>メールアドレス</td>
+                <%# メールアドレス %>
                 <td><%= f.text_field :email, :size=>"30" %></td>
               </tr>
               <tr>
                 <td></td>
+                <%# ユーザーアカウントが有効かどうか確認 true = 有効 %>
                 <% if @user.is_active? %>
                   <td class="text-success">有効</td>
                 <% else %>
