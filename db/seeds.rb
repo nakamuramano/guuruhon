@@ -1,3 +1,4 @@
+#管理者登録情報
 Admin.create!(
    email: 'admin@admin',
    password: 'adminadmin',
