@@ -31,8 +31,14 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to admin_user_path(@user.id)
+    if @user.update(user_params)
+       redirect_to admin_user_path(@user.id)
+    else
+      @tags = Tag.order(created_at: :desc).limit(6)
+      flash[:notice] = '入力し直しててください！'
+      render :edit
+    end
+
   end
 
   def search
