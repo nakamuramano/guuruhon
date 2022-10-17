@@ -23,7 +23,9 @@ class Public::UsersController < ApplicationController
        flash[:notice] = "編集しました"
        redirect_to  user_path(@user.id)
     else
-       render :edit
+      @tags = Tag.order(created_at: :desc).limit(6)
+      flash[:notice] = '入力し直しててください！'
+      render :edit
     end
   end
 
