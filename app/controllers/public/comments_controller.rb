@@ -1,14 +1,17 @@
 class Public::CommentsController < ApplicationController
-  
+
 before_action :authenticate_user!, except: [:top, :new_guest]
-   def create
+  def create
     article = Article.find(params[:article_id])
     comment = current_user.comments.new(comment_params)
     comment.article_id = article.id
-    comment.save
-    redirect_to article_path(article)
-   end
-   
+    if comment.save
+      redirect_to article_path(article)
+    else
+      redirect_to article_path(article)
+    end
+  end
+
   def destroy
     Comment.find(params[:id]).destroy()
     redirect_to root_path(params[:article_id])
