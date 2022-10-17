@@ -75,7 +75,10 @@ class Public::ArticlesController < ApplicationController
        @article.save_tag(tag_list)
        redirect_to article_path(@article.id)
     else
-       render:edit
+       @tags = Tag.order(created_at: :desc).limit(6)
+       @user = current_user
+       flash[:notice] = '入力し直しててください！'
+      render:edit
     end
   end
 
