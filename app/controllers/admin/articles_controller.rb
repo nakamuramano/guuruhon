@@ -39,6 +39,7 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def search
+     #タグ検索機能
     @tags = Tag.order(created_at: :desc).limit(6)
     if params[:title].present?
       @articles = Article.where('title LIKE ?', "%#{params[:title]}%").page(params[:page]).per(10)
