@@ -11,14 +11,15 @@ class Admin::UsersController < ApplicationController
     @articles = @user.articles.page(params[:page]).per(10)
     @comment = Comment.new
   end
-  
+
   def rank
     @user = User.find(params[:id])
     @ranks = @user.articles.sort { |a, b| b.comments.count <=> a.comments.count }
   end
-  
+
 
   def bookmark
+    @tags = Tag.order(created_at: :desc).limit(6)
     @user = User.find(params[:id])
     @comment = Comment.new
     @bookmarks = @user.bookmarks.page(params[:page]).per(10)

@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class='col-md-3'>
+      <%# サイドブロック ユーザープロフィール %>
+      <%= render 'public/users/list', bookmark: @bookmarks, user: @user %>
+      <%# サイドブロック タグ %>
+      <%= render 'public/articles/tag', tag: @tags %>
+    </div>
+
+    <div class='col-md-8 offset-md-1'>
+      <div class="inner">
+        <h5 class="section-ttl">お気に入り一覧</h5>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col"><i class="fa-regular fa-user"></i> ユーザーネーム</th>
+              <th scope="col"><i class="fa-solid fa-book"></i> タイトル</th>
+            </tr>
+          </thead>
+          <%# ブックマーク一覧 %>
+          <% @bookmarks.each do |bookmark| %>
+            <tbody>
+              <tr>
+                <%# ユーザーネーム %>
+                <td><%= bookmark.article.user.name %></td>
+                <td>
+                  <%# 投稿タイトル %>
+                  <%= link_to admin_article_path(bookmark.article), class: "link" do %>
+                    <%= bookmark.article.title %>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+  	    <%= link_to admin_user_path(@user.id), class: "link" do %>
+  	      <i class="fa-solid fa-left-long"></i>戻る
+  	    <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="pagination"><%= paginate @bookmarks %></div>
+</div>
