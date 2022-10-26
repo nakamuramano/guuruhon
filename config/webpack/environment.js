@@ -12,3 +12,7 @@ environment.plugins.prepend(
     Popper: 'popper.js'
   })
 )
+
+environment.loaders.forEach(element => {
+  environment.loaders.get(element.key).use = environment.loaders.get(element.key).use.filter(rule => rule.loader !== 'postcss-loader')
+});
