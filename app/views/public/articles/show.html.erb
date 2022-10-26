@@ -31,7 +31,7 @@
         <tr>
           <td>
             <%# 楽天API検索 %>
-            読んでみたくなったら...
+            読んでみたくなったら..
             <%= form_with url: books_path, method: :get, local: true do |f| %>
               <%= f.text_field :keyword, placeholder: "本のタイトル・著者名", :size=>"30" %>
               <%= f.submit '本を検索!', class: "btn--radius" %>
