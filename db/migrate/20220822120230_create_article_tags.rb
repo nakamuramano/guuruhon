@@ -1,9 +1,10 @@
 class CreateArticleTags < ActiveRecord::Migration[6.1]
   def change
     create_table :article_tags do |t|
-      t.references :article,type: :bigint,  foreign_key: true
+      # t.references :article, type: :bigint, foreign_key: true
+      t.bigint :article_id, foreign_key: true
       t.references :tag,      foreign_key: true
-      
+
       t.timestamps
     end
 
