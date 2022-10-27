@@ -92,7 +92,7 @@ class Public::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content, :profile_image, :book, tag: [:tag_name]).merge(user_id: current_user.id)
+    params.require(:article).permit(:title, :content, :profile_image, tag: [:tag_name]).merge(user_id: current_user.id)
   end
 
   def correct_user
