@@ -6,6 +6,7 @@ class Admin::SessionsController < Devise::SessionsController
    admin_articles_path(resource)
   end
 
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
