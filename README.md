@@ -40,5 +40,6 @@ https://docs.google.com/spreadsheets/d/1aI2Dr2NlBUrd95S11IcEG5We1Z42MxMy30YjvdN7
 - IDE：Cloud9
 
 ## 使用素材
-- 使用検討中
+- ぱくたそ（https://www.pakutaso.com/）
+- ICOOON MONO（https://icooon-mono.com/）
 
