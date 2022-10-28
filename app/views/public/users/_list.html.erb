@@ -1,39 +1,38 @@
-
-  <%# アイコン %>
-  <%= link_to user_path(@user.id) do %>
-    <%= image_tag @user.get_profile_image(80,80), class: "image" %>
-  <% end %>
-  <table class="table">
-    <tbody>
-      <tr>
-        <%# ユーザーネーム %>
-        <td><%= @user.name %></td>
-      </tr>
-      <tr>
-        <%# メールアドレス %>
-        <td><%= @user.email %></td>
-      </tr>
-      <tr>
-        <td>
-          <%# ブックマーク一覧推移 %>
-          <%=link_to bookmarks_path(@bookmarks), class: "link" do %>
-            お気に入り<i class="fa-solid fa-star"></i>
-          <% end %>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <%# 新規投稿ページ推移 %>
-          <%= link_to new_article_path, class: "link" do %>
-            おすすめの本を紹介する<%= image_tag  'icon_111070_256.png', size: "20x20" %>
-          <% end %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <%# 自分のマイページ %>
-  <% if @user == current_user %>
-    <%= link_to "編集する", edit_user_path(@user.id), class: "btn btn btn--radius" %>
-    <%= link_to "退会する", unsubscribe_path(@user.id), class: "btn btn btn--radius" %>
-  <% end %>
+<%# アイコン %>
+<%= link_to user_path(@user.id) do %>
+  <%= image_tag @user.get_profile_image(80,80), class: "image" %>
+<% end %>
+<table class="table">
+  <tbody>
+    <tr>
+      <%# ユーザーネーム %>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <%# メールアドレス %>
+      <td><%= @user.email %></td>
+    </tr>
+    <tr>
+      <td>
+        <%# ブックマーク一覧推移 %>
+        <%=link_to bookmarks_path(@bookmarks), class: "link" do %>
+          お気に入り<i class="fa-solid fa-star"></i>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%# 新規投稿ページ推移 %>
+        <%= link_to new_article_path, class: "link" do %>
+          おすすめの本を紹介する<%= image_tag  'icon_111070_256.png', size: "20x20" %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<%# 自分のマイページ %>
+<% if @user == current_user %>
+  <%= link_to "編集する", edit_user_path(@user.id), class: "btn btn btn--radius" %>
+  <%= link_to "退会する", unsubscribe_path(@user.id), class: "btn btn btn--radius" %>
+<% end %>
 

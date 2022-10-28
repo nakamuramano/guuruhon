@@ -10,17 +10,15 @@
       <div class='col-md-8 offset-md-1'>
         <div class="inner">
           <h5 class="section-ttl"><%= @user.name %>さんの投稿一覧</h5>
-        <div class="rank">
-          <%# 自分のページでは表示 %>
-          <% if @user == current_user %>
-            <%# コメントランキングページ推移 %>
-            <%= link_to rank_path, class: "link" do %>
-              <i class="fa-solid fa-crown"></i>投稿のコメント数ランキングを見る
+          <div class="rank">
+            <%# 自分のページでは表示 %>
+            <% if @user == current_user %>
+              <%# コメントランキングページ推移 %>
+              <%= link_to rank_path, class: "link" do %>
+                <i class="fa-solid fa-crown"></i>投稿のコメント数ランキングを見る
+              <% end %>
             <% end %>
-          <% end %>
-        </div>
-
-
+          </div>
           <table class='table table-hover table-inverse'>
             <tbody>
               <%# ユーザーの投稿一覧 %>

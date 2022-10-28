@@ -21,7 +21,7 @@
                     <i class="fa-solid fa-arrow-right"></i> <%= article.title %>
                   <% end %>
                 </td>
-                <%# コメント数 %> 
+                <%# コメント数 %>
                 <td><%= (article.comments.count) %>コメント</td>
               </tr>
             </tbody>
@@ -29,6 +29,7 @@
         </table>
       </div>
     </div>
+
   </div>
   <div class="paginate"><%= paginate @articles %></div>
 </div>
