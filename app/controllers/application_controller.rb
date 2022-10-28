@@ -16,7 +16,7 @@ protected
     elsif resource == :admin
        new_admin_session_path
     else
-       root_path
+       redirect_to request.referer
     end
   end
 
