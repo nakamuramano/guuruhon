@@ -25,7 +25,7 @@ Rails.application.routes.draw do
    resources :article_tags
    resources :tags
    resources :bookmarks, only: [:index]
-   resources :books
+   resources :books, only: [:index]
 
   end
 
@@ -48,11 +48,11 @@ Rails.application.routes.draw do
         collection do
           get 'search'
         end
-       resources :comments, only: [:create, :destroy]
+       resources :comments, only: [:destroy]
      end
-   resources :tags
+   resources :tags, only: [:index, :show, :destroy]
    resources :users
-   resources :books
+   resources :books, only: [:index]
   end
 
 
