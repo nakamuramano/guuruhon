@@ -1,5 +1,5 @@
 class Admin::UsersController < ApplicationController
-
+  before_action :set_article, only: [:show, :rank, :bookmark, :edit, :update, :withdrawal]
   before_action :check_guest, only: [:update, :destroy, :withdrawal]
 
   def index
@@ -7,31 +7,26 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     @articles = @user.articles.page(params[:page]).per(10)
     @comment = Comment.new
   end
 
   def rank
-    @user = User.find(params[:id])
     @ranks = @user.articles.sort { |a, b| b.comments.count <=> a.comments.count }
   end
 
 
   def bookmark
     @tags = Tag.order(created_at: :desc).limit(6)
-    @user = User.find(params[:id])
     @comment = Comment.new
     @bookmarks = @user.bookmarks.page(params[:page]).per(10)
   end
 
   def edit
-    @user = User.find(params[:id])
     @tags = Tag.order(created_at: :desc).limit(6)
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
        redirect_to admin_user_path(@user.id)
     else
@@ -54,7 +49,6 @@ class Admin::UsersController < ApplicationController
 
 
   def withdrawal
-    @user = User.find(params[:id])
     @user.update(is_active: false)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
@@ -62,6 +56,10 @@ class Admin::UsersController < ApplicationController
   end
 
   private
+
+  def set_article
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :is_active, :profile_image)

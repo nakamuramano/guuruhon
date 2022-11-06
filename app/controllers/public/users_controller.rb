@@ -1,22 +1,20 @@
 class Public::UsersController < ApplicationController
+  before_action :set_article, only: [:show, :rank, :edit, :update, :withdrawal]
   before_action :authenticate_user!, except: [:top, :new_guest]
   before_action :correct_user, only: [:rank, :edit, :unsubscribe]
 
 
   def show
-    @user = User.find(params[:id])
     @articles = @user.articles.page(params[:page]).per(10)
     @tags = Tag.order(created_at: :desc).limit(6)
     @bookmarks = Bookmark.where(user_id: current_user.id)
   end
 
   def edit
-    @user = User.find(params[:id])
     @tags = Tag.order(created_at: :desc).limit(6)
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.email == 'guest@example.com'
       redirect_to user_path(@user), alert: 'ゲストユーザーの変更・削除はできません。'
     elsif @user.update(user_params)
@@ -31,13 +29,11 @@ class Public::UsersController < ApplicationController
 
   def rank
     @my_ranks = current_user.articles.sort { |a, b| b.comments.count <=> a.comments.count }
-    @user = User.find(params[:id])
 
   end
 
 
   def withdrawal
-    @user = User.find(params[:id])
     if @user.email == 'guest@example.com'
       redirect_to user_path(@user), alert: 'ゲストユーザーの変更・削除はできません。'
     else
@@ -50,6 +46,10 @@ class Public::UsersController < ApplicationController
 
 
   private
+
+  def set_article
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :profile_image)
