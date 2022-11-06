@@ -1,5 +1,6 @@
 class Admin::ArticlesController < ApplicationController
   before_action :check_guest, only: [:update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update]
 
   def index
     @articles = Article.all.page(params[:page]).per(5)
@@ -8,7 +9,6 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def show
-    @article = Article.find(params[:id])
     @user = Article.find(params[:id]).user
     @comment = Comment.new
     @article_tags = @article.tags
@@ -16,15 +16,13 @@ class Admin::ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
     @user = Article.find(params[:id]).user
     @tags = Tag.order(created_at: :desc).limit(6)
     @tag_list = @article.tags.pluck(:tag_name).join("、")
   end
 
   def update
-      @article = Article.find(params[:id])
-      tag_list = params[:article][:tag_name].split("、")
+    tag_list = params[:article][:tag_name].split("、")
     if @article.update(article_params)
        @old_relations = ArticleTag.where(article_id: @article.id)
        @old_relations.each do |relation|
@@ -61,6 +59,10 @@ class Admin::ArticlesController < ApplicationController
 
 
 private
+
+  def set_article
+    @article = Article.find(params[:id])
+  end
 
   def article_params
     params.require(:article).permit(:title, :content, :profile_image)

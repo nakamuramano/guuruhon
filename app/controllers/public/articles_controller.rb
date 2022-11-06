@@ -1,6 +1,7 @@
 class Public::ArticlesController < ApplicationController
   before_action :authenticate_user!, except: [:top, :new_guest]
   before_action :correct_user, only: [:edit]
+  before_action :set_article, only: [:show, :edit, :update]
 
   def index
     @articles = Article.all.page(params[:page]).per(5)
@@ -12,7 +13,6 @@ class Public::ArticlesController < ApplicationController
 
   def show
     @user_id = Article.find(params[:id]).user
-    @article = Article.find(params[:id])
     @comment = Comment.new
     @article_tags = @article.tags
     @tags = Tag.order(created_at: :desc).limit(6)
@@ -58,14 +58,12 @@ class Public::ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
     @tag_list = @article.tags.pluck(:tag_name).join("、")
     @tags = Tag.order(created_at: :desc).limit(6)
     @user = current_user
   end
 
   def update
-      @article = Article.find(params[:id])
       tag_list = params[:article][:tag_name].split("、")
     if @article.update(article_params)
        @old_relations = ArticleTag.where(article_id: @article.id)
@@ -90,6 +88,11 @@ class Public::ArticlesController < ApplicationController
 
 
   private
+  
+  def set_article
+    @article = Article.find(params[:id])
+  end
+
 
   def article_params
     params.require(:article).permit(:title, :content, :profile_image, tag: [:tag_name]).merge(user_id: current_user.id)
