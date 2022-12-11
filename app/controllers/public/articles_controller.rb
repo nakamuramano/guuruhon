@@ -40,13 +40,14 @@ class Public::ArticlesController < ApplicationController
     else
       flash[:notice] = '入力し直しててください！'
       render:new
-    end  end
+    end  
+  end
 
   def rakusearch
   end
 
   def search
-    #タグ検索機能
+    #キーワード検索機能
     @tags = Tag.order(created_at: :desc).limit(6)
     @user = current_user
     if params[:title].present?
