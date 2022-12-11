@@ -43,9 +43,6 @@ class Public::ArticlesController < ApplicationController
     end  
   end
 
-  def rakusearch
-  end
-
   def search
     #キーワード検索機能
     @tags = Tag.order(created_at: :desc).limit(6)
