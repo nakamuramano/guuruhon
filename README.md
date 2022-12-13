@@ -33,10 +33,9 @@
 https://docs.google.com/spreadsheets/d/1aI2Dr2NlBUrd95S11IcEG5We1Z42MxMy30YjvdN78RM/edit?usp=sharing
 
 ## 開発環境
-- OS：Linux(CentOS)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- OS：Linux release 2 (Karoo)
+- 言語：HTML,CSS,Ruby
 - フレームワーク：Ruby on Rails
-- JSライブラリ：jQuery
 - IDE：Cloud9
 
 ## 使用素材
